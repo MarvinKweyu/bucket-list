@@ -36,20 +36,23 @@ const actions = {
         console.log(error)
       })
   },
-  getProjectDetail ({ commit }, projectTitle) {
-    globalAxios.get('/posts/posts.json', projectTitle)
-      .then(res => {
-        console.log('post detail, ', res.data)
-        commit('SET_PROJECT_DETAIL', res.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  getProjectDetail ({ commit, state }, projectId) {
+    const allProjects = state.allProjects
+
+    const specificDetail = allProjects[projectId]
+    console.log(specificDetail)
+
+    // eslint-disable-next-line no-undef
+    // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
+    commit('SET_PROJECT_DETAIL', specificDetail)
   }
 
 }
 
 const getters = {
+  getProjectDetail: state => {
+    return state.projectDetail
+  }
 
 }
 

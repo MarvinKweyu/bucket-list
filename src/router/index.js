@@ -2,20 +2,41 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login'
+import projectDetail from '../views/projectDetail'
+import Project from '../components/Project'
+import inProgress from '../components/inProgress'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
-  {
     path: '/login',
     name: 'Login',
     component: Login
   },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+    children: [
+      {
+        path: '',
+        name: 'allProjects',
+        component: Project
+      },
+      {
+        path: '/in-progress',
+        name: 'inProgress,',
+        component: inProgress
+      },
+      {
+        path: ':projectId',
+        name: 'projectDetail',
+        component: projectDetail
+      }
+    ]
+  },
+
   {
     path: '/about',
     name: 'About',
