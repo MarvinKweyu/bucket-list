@@ -1,6 +1,6 @@
 <template>
 <v-main>
-  <v-tabs>
+  <v-tabs color="darkolivegreen">
     <v-tab @click="newProject=true">New suggestion</v-tab>
     <v-tab ripple @click="newProject=false">All suggestions</v-tab>
   </v-tabs>
