@@ -1,19 +1,21 @@
 <template>
  <v-container class="container is-fluid">
    <v-row class="text-center">
-    <app-project></app-project>
+     <app-tab></app-tab>
+<!--     <app-new-post></app-new-post>-->
+<!--    <app-project></app-project>-->
    </v-row>
  </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import Project from '../components/Project'
+import homeTab from '../components/homeTab'
 
 export default {
   name: 'Home',
   components: {
-    'app-project': Project
+    'app-tab': homeTab
   }
 }
 </script>

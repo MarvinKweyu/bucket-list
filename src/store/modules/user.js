@@ -37,23 +37,23 @@ const actions = {
   },
 
   login ({ commit }, authData) {
-    console.log('logging in:', authData.username)
-    globalAxios
-      .post('/api/v1/rest-auth/login/', {
-        username: authData.username,
-        email: authData.email,
-        password: authData.password
-      })
-      .then(res => {
-        commit('AUTH_USER', {
-          token: res.data.key
-        })
-        // save token locally
-        localStorage.setItem('token', res.data.key)
-        // save email locally for use in login
-        localStorage.setItem('email', authData.email)
-      })
-      .catch(error => console.log(error))
+    console.log('logging in:', authData)
+    // globalAxios
+    //   .post('/api/v1/rest-auth/login/', {
+    //     username: authData.username,
+    //     email: authData.email,
+    //     password: authData.password
+    //   })
+    //   .then(res => {
+    //     commit('AUTH_USER', {
+    //       token: res.data.key
+    //     })
+    //     // save token locally
+    //     localStorage.setItem('token', res.data.key)
+    //     // save email locally for use in login
+    //     localStorage.setItem('email', authData.email)
+    //   })
+    //   .catch(error => console.log(error))
   },
 
   tryAutoLogin ({ commit }) {
