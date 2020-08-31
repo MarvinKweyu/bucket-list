@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'https://martmarv.firebaseio.com/'
+axios.defaults.headers.get.Accepts = 'application/json'
 
 Vue.config.productionTip = false
 
