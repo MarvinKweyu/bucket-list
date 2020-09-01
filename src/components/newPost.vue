@@ -5,7 +5,7 @@
     </v-card-title>
 
     <v-card-text>
-      <v-text-field color="success"
+      <v-text-field color="darkolivegreen"
                     label="project title"
                     prepend-icon="mdi-domain"
                     v-model = "projectTitle"/>
@@ -16,7 +16,7 @@
         rounded
         persistent-hint
         v-model="projectDetail"
-        color="success"
+        color="darkolivegreen"
       >
 
       </v-textarea>
@@ -51,13 +51,23 @@ export default {
   },
   methods: {
     suggestProject () {
+      const today = new Date()
+      const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+      const dateTime = date + ' ' + time
+
       const newProject = {
         projectTitle: this.projectTitle,
         projectDetail: this.projectDetail,
-        projectDate: this.projectDate
+        projectDate: dateTime
       }
 
       this.$store.dispatch('createProject', newProject)
+      this.$store.dispatch('getAllProjects')
+      this.projectDate = ''
+      this.projectTitle = ''
+      this.projectDetail = ''
+      this.$emit('closeDialog')
     },
     closeDialog () {
       this.$emit('closeDialog')

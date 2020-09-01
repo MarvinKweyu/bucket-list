@@ -7,19 +7,19 @@
       multiple
       active-class="pink--text"
     >
-      <template v-for="(item, index) in items">
-        <v-list-item :key="item.title">
-<!--          v-slot:default="{ active, toggle }"-->
+      <template v-for="(item, index) in projects">
+        <div :key="index">
+        <v-list-item >
           <template>
-            <v-list-item-content @click="getProjectDetails('-MG35cag_j2lebxmPRFw')">
-              <v-list-item-title v-text="item.title"></v-list-item-title>
-              <v-list-item-subtitle class="text--primary" v-text="item.headline"></v-list-item-subtitle>
-              <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+            <v-list-item-content @click="getProjectDetails(item)">
+              <v-list-item-title v-text="item.projectTitle"></v-list-item-title>
+              <v-list-item-subtitle class="text--primary" v-text="item.projectDetail"></v-list-item-subtitle>
+              <v-list-item-subtitle v-text="item.projectDate"></v-list-item-subtitle>
             </v-list-item-content>
 
-            <v-list-item-action>
-              <v-list-item-action-text v-text="item.action"></v-list-item-action-text>
-            </v-list-item-action>
+<!--            <v-list-item-action>-->
+<!--              <v-list-item-action-text v-text="item.projectDate"></v-list-item-action-text>-->
+<!--            </v-list-item-action>-->
           </template>
         </v-list-item>
 
@@ -27,6 +27,7 @@
           v-if="index + 1 < items.length"
           :key="index"
         ></v-divider>
+        </div>
       </template>
     </v-list-item-group>
   </v-list>
@@ -76,6 +77,11 @@ export default {
     getProjectDetails (projectId) {
       this.$store.dispatch('getProjectDetail', projectId)
       this.$router.push({ name: 'projectDetail' })
+    }
+  },
+  computed: {
+    projects () {
+      return this.$store.getters.getAllProjects
     }
   }
 }

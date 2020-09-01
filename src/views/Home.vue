@@ -45,8 +45,8 @@ export default {
       this.dialog = false
     }
   },
-  computed: {
-
+  created () {
+    this.$store.dispatch('getAllProjects')
   }
 }
 </script>
