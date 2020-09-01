@@ -34,7 +34,7 @@
         Cancel
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn @click="suggestProject">Suggest project</v-btn>
+      <v-btn dark color="darkolivegreen" @click="suggestProject">Suggest project</v-btn>
     </v-card-actions>
   </v-card>
 </template>
