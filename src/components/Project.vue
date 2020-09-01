@@ -5,7 +5,6 @@
     <v-list-item-group
       v-model="selected"
       multiple
-      active-class="pink--text"
     >
       <template v-for="(item, index) in projects">
         <div :key="index">
