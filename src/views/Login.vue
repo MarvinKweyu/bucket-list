@@ -5,16 +5,16 @@
         <v-form v-if="show" class="login-detail">
 
           <v-text-field
-            color="success"
+            color="darkolivegreen"
             label="username"
             prepend-icon="mdi-account-circle"
             v-model = "username"
           />
 
-          <v-text-field v-model="email" color="success" label="email" prepend-icon="mdi-account-circle" />
+          <v-text-field v-model="email" color="darkolivegreen" label="email" prepend-icon="mdi-account-circle" />
           <v-text-field
             v-model="password"
-            color="success"
+            color="darkolivegreen"
             :type="showPassword? 'text' : 'password'"
             label="password"
             prepend-icon="mdi-lock"
@@ -25,9 +25,9 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn  variant="success" class="my-2 my-sm-0 option">Signup</v-btn>
+        <v-btn  dark class="my-2 my-sm-0 option">Signup</v-btn>
         <v-spacer></v-spacer>
-        <v-btn @click="login" variant="primary" class="my-2 my-0 option">Login</v-btn>
+        <v-btn dark @click="login" class="my-2 my-0 option">Login</v-btn>
       </v-card-actions>
     </v-card>
   </div>
