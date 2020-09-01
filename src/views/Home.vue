@@ -15,6 +15,24 @@
      <app-new-post @closeDialog="closeDialog"></app-new-post>
    </v-dialog>
 
+   <v-snackbar
+     v-model="snackbar"
+     :timeout="timeout"
+   >
+     {{ text }}
+
+     <template v-slot:action="{ attrs }">
+       <v-btn
+         color="blue"
+         text
+         v-bind="attrs"
+         @click="snackbar = false"
+       >
+         Close
+       </v-btn>
+     </template>
+   </v-snackbar>
+
    <router-view></router-view>
  </v-container>
 </template>
@@ -31,7 +49,10 @@ export default {
   },
   data () {
     return {
-      dialog: false
+      dialog: false,
+      snackbar: false,
+      text: 'Project suggestion successful',
+      timeout: 1000
     }
   },
   methods: {

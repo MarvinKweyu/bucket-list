@@ -1,15 +1,22 @@
 <template>
   <v-card>
-    <v-form>
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation>
     <v-card-title class="headline grey lighten-2">
       Suggest new Project
     </v-card-title>
 
     <v-card-text>
-      <v-text-field color="darkolivegreen"
-                    label="project title"
-                    prepend-icon="mdi-domain"
-                    v-model = "projectTitle"/>
+      <v-text-field
+        color="darkolivegreen"
+        label="project title"
+        prepend-icon="mdi-domain"
+        v-model = "projectTitle"
+        required
+        :rules="titleRules"
+      />
 
       <v-textarea
         loading
@@ -18,6 +25,8 @@
         persistent-hint
         v-model="projectDetail"
         color="darkolivegreen"
+        required
+        :rules="detailRules"
       >
 
       </v-textarea>
@@ -35,7 +44,7 @@
         Cancel
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn dark color="darkolivegreen" @click="suggestProject">Suggest project</v-btn>
+      <v-btn :disabled="!valid" dark color="darkolivegreen" @click="suggestProject">Suggest project</v-btn>
     </v-card-actions>
     </v-form>
   </v-card>
@@ -48,7 +57,16 @@ export default {
     return {
       projectTitle: '',
       projectDetail: '',
-      projectDate: ''
+      projectDate: '',
+      valid: true,
+      titleRules: [
+        v => !!v || 'A title is required',
+        v => (v && v.length > 4) || 'The title must be greater than 4 characters'
+      ],
+      detailRules: [
+        v => !!v || 'A project description is required',
+        v => (v && v.length > 10) || 'Detail must be greater than 10 characters'
+      ]
     }
   },
   methods: {
@@ -66,9 +84,7 @@ export default {
 
       this.$store.dispatch('createProject', newProject)
       this.$store.dispatch('getAllProjects')
-      this.projectDate = ''
-      this.projectTitle = ''
-      this.projectDetail = ''
+      this.$refs.form.reset()
       this.$emit('closeDialog')
     },
     closeDialog () {

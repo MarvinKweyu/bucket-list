@@ -42,7 +42,6 @@ const actions = {
       })
   },
   getProjectDetail ({ commit, state }, projectId) {
-    // eslint-disable-next-line no-undef
     // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
     commit('SET_PROJECT_DETAIL', projectId)
   },
@@ -52,7 +51,7 @@ const actions = {
 
     const entries = Object.entries(allProjects)
     let updatedPost = null
-    // eslint-disable-next-line no-unused-vars
+
     for (const [uniqueId, project] of entries) {
       if (project.projectDate === projectObject.projectDate) {
         project[uniqueId] = projectObject
