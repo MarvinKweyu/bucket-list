@@ -2,7 +2,8 @@ import globalAxios from 'axios'
 
 const state = {
   allProjects: null,
-  projectDetail: null
+  projectDetail: null,
+  projectsObjectOfObjects: null
 }
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
   },
   SET_PROJECT_DETAIL (state, projectDetail) {
     state.projectDetail = projectDetail
+  },
+  SET_PROJECTS_OBJECT (state, projectsObjectOfObjects) {
+    state.projectsObjectOfObjects = projectsObjectOfObjects
   }
 
 }
@@ -20,7 +24,7 @@ const actions = {
     globalAxios.post('/posts/posts.json', postInfo)
       .then(
         res => {
-          console.log(res)
+          // console.log(res)
         })
       .catch(error => {
         console.log(error)
@@ -30,7 +34,7 @@ const actions = {
     globalAxios.get('/posts/posts.json')
       .then(res => {
         // console.log(res.data)
-        // console.log(Object.values(res.data))
+        commit('SET_PROJECTS_OBJECT', res.data)
         commit('SET_PROJECTS', Object.values(res.data))
       })
       .catch(error => {
@@ -38,13 +42,32 @@ const actions = {
       })
   },
   getProjectDetail ({ commit, state }, projectId) {
-    // const allProjects = state.allProjects
-    //
-    // const specificDetail = allProjects[projectId]
-
     // eslint-disable-next-line no-undef
     // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
     commit('SET_PROJECT_DETAIL', projectId)
+  },
+  updateProject ({ commit, state }, projectObject) {
+    // update project based on comparing date
+    const allProjects = state.projectsObjectOfObjects
+
+    const entries = Object.entries(allProjects)
+    let updatedPost = null
+    // eslint-disable-next-line no-unused-vars
+    for (const [uniqueId, project] of entries) {
+      if (project.projectDate === projectObject.projectDate) {
+        project[uniqueId] = projectObject
+        updatedPost = project
+      }
+    }
+
+    globalAxios.patch('/posts/posts.json', updatedPost)
+      .then(
+        res => {
+          // console.log(res)
+        })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
 }

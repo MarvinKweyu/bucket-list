@@ -19,7 +19,7 @@
   <v-spacer></v-spacer>
 
   <v-row class="d-flex justify-center">
-    <v-btn @click="editProject(postDetail)" class="ma-2" outlined color="darkolivegreen">
+    <v-btn @click="editProject" class="ma-2" outlined color="darkolivegreen">
       <v-icon dark left>mdi-pencil</v-icon>Edit
     </v-btn>
   </v-row>
@@ -71,6 +71,7 @@ export default {
       editContent: false,
       projectTitle: '',
       projectDetail: '',
+      projectDate: '',
 
       loader: null,
       loading3: false
@@ -92,6 +93,8 @@ export default {
       this.projectTitle = this.$store.getters.getProjectDetail.projectTitle
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.projectDetail = this.$store.getters.getProjectDetail.projectDetail
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.projectDate = this.$store.getters.getProjectDetail.projectDate
       return this.$store.getters.getProjectDetail
     }
   },
@@ -108,6 +111,13 @@ export default {
     },
     saveChanges () {
       this.loader = 'loading3'
+      const project = {
+        projectTitle: this.projectTitle,
+        projectDetail: this.projectDetail,
+        projectDate: this.projectDate
+      }
+      this.$store.dispatch('updateProject', project)
+      this.$store.dispatch('getAllProjects')
     }
   }
 }

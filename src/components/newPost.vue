@@ -1,5 +1,6 @@
 <template>
   <v-card>
+    <v-form>
     <v-card-title class="headline grey lighten-2">
       Suggest new Project
     </v-card-title>
@@ -36,6 +37,7 @@
       <v-spacer></v-spacer>
       <v-btn dark color="darkolivegreen" @click="suggestProject">Suggest project</v-btn>
     </v-card-actions>
+    </v-form>
   </v-card>
 </template>
 
