@@ -1,26 +1,42 @@
 <template>
-<v-main>
-  <v-form>
-    <v-text-field color="success"
-    label="project title"
-    prepend-icon="mdi-domain"
-    v-model = "projectTitle"/>
+  <v-card>
+    <v-card-title class="headline grey lighten-2">
+      Suggest new Project
+    </v-card-title>
 
-    <v-textarea
-      loading
-      outlined
-      rounded
-      persistent-hint
-      v-model="projectDetail"
-      color="success"
-    >
+    <v-card-text>
+      <v-text-field color="success"
+                    label="project title"
+                    prepend-icon="mdi-domain"
+                    v-model = "projectTitle"/>
 
-    </v-textarea>
-  </v-form>
-  <div>
-    <v-btn @click = "suggestProject">Suggest project</v-btn>
-  </div>
-</v-main>
+      <v-textarea
+        loading
+        outlined
+        rounded
+        persistent-hint
+        v-model="projectDetail"
+        color="success"
+      >
+
+      </v-textarea>
+
+    </v-card-text>
+
+    <v-divider></v-divider>
+
+    <v-card-actions>
+      <v-btn
+        color="darkolivegreen"
+        text
+        @click="closeDialog"
+      >
+        Cancel
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn @click="suggestProject">Suggest project</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -42,6 +58,9 @@ export default {
       }
 
       this.$store.dispatch('createProject', newProject)
+    },
+    closeDialog () {
+      this.$emit('closeDialog')
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
  <v-container class="container is-fluid">
      <v-tabs color="darkolivegreen" centered>
-       <v-tab ripple :to="{ name: 'Home' }">All suggestions</v-tab>
-       <v-tab :to="{ name: 'inProgress' }">In progress</v-tab>
+       <v-tab ripple @click="goHome">All suggestions</v-tab>
+       <v-tab @click="inProgress" >In progress</v-tab>
      </v-tabs>
-       <v-btn small class="" fab dark color="darkolivegreen"  @click.stop="dialog = true">
+       <v-btn small class="" fab dark color="darkolivegreen"  @click="dialog = true">
          <v-icon dark>mdi-plus</v-icon>
        </v-btn>
 
@@ -12,7 +12,7 @@
      v-model="dialog"
      max-width="590"
    >
-     <app-new-post></app-new-post>
+     <app-new-post @closeDialog="closeDialog"></app-new-post>
    </v-dialog>
 
    <router-view></router-view>
@@ -33,6 +33,20 @@ export default {
     return {
       dialog: false
     }
+  },
+  methods: {
+    inProgress () {
+      this.$router.push({ path: 'in-progress' })
+    },
+    goHome () {
+      this.$router.push({ path: '/' })
+    },
+    closeDialog () {
+      this.dialog = false
+    }
+  },
+  computed: {
+
   }
 }
 </script>
