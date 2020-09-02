@@ -1,7 +1,5 @@
 import globalAxios from 'axios'
 
-const token = localStorage.getItem('token')
-
 const state = {
   allProjects: null,
   projectDetail: null,
@@ -23,6 +21,7 @@ const mutations = {
 
 const actions = {
   createProject ({ commit }, postInfo) {
+    const token = localStorage.getItem('token')
     globalAxios.post('/posts/posts.json' + '?auth=' + token, postInfo)
       .then(
         res => {
@@ -33,6 +32,7 @@ const actions = {
       })
   },
   getAllProjects ({ commit }) {
+    const token = localStorage.getItem('token')
     globalAxios.get('/posts/posts.json' + '?auth=' + token)
       .then(res => {
         // console.log(res.data)
@@ -48,6 +48,7 @@ const actions = {
     commit('SET_PROJECT_DETAIL', projectId)
   },
   updateProject ({ commit, state }, projectObject) {
+    const token = localStorage.getItem('token')
     // update project based on comparing date
     const allProjects = state.projectsObjectOfObjects
 

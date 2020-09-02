@@ -5,6 +5,7 @@ import Login from '../views/Login'
 import projectDetail from '../views/projectDetail'
 import Project from '../components/Project'
 import inProgress from '../components/inProgress'
+import state from '../store/modules/user'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,14 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
+    // protect home from navigation without login
+    beforeEnter (to, from, next) {
+      if (state.idToken) {
+        next()
+      } else {
+        next('/')
+      }
+    },
     children: [
       {
         path: '',

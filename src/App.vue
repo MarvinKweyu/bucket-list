@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header></Header>
+    <Header v-if="auth"></Header>
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -16,7 +16,12 @@ export default {
   components: {
     Header
   },
-
+  computed: {
+    auth () {
+      // returns authentication ; null or a value
+      return this.$store.getters.isAuthenticated
+    }
+  },
   data: () => ({
     //
   })
