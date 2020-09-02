@@ -18,7 +18,7 @@ const mutations = {
 const actions = {
   signup ({ commit }, authData) {
     axiosAuth
-      .post('signUp?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
+      .post('accounts:signUp?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
         email: authData.email,
         password: authData.password,
         returnSecureToken: true
@@ -35,7 +35,7 @@ const actions = {
 
   login ({ commit }, authData) {
     axiosAuth
-      .post('signInWithPassword?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
+      .post('accounts:signInWithPassword?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
         email: authData.email,
         password: authData.password
       })

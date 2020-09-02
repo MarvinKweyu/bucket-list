@@ -6,7 +6,7 @@ import axios from 'axios'
 // login
 // https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 const instance = axios.create({
-  baseURL: 'https://identitytoolkit.googleapis.com/v1/accounts:'
+  baseURL: 'https://identitytoolkit.googleapis.com/v1/'
 })
 
 export default instance
