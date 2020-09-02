@@ -1,5 +1,4 @@
 import axiosAuth from '../../axios-auth'
-import globalAxios from 'axios'
 
 const state = {
   idToken: null,
