@@ -9,22 +9,29 @@
   </div>
 
   <v-spacer></v-spacer>
-
-<!--  <v-btn-->
-<!--    href="https://github.com/vuetifyjs/vuetify/releases/latest"-->
-<!--    target="_blank"-->
-<!--    text-->
-<!--  >-->
-<!--    <span class="mr-2">Latest Release</span>-->
-<!--    <v-icon>mdi-open-in-new</v-icon>-->
-<!--  </v-btn>-->
+      <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>
       <v-btn outlined>Logout</v-btn>
 </v-app-bar>
 </template>
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data () {
+    return {
+      goDark: false
+    }
+  },
+  watch: {
+    changer () {
+      if (this.goDark === true) {
+        return (this.$vuetify.theme.dark = true)
+      } else {
+        return (this.$vuetify.theme.dark = false)
+      }
+    }
+
+  }
 }
 </script>
 

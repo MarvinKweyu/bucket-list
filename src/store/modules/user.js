@@ -1,4 +1,4 @@
-import globalAxios from 'axios'
+import axiosAuth from '../../axios-auth'
 
 const state = {
   idToken: null,
@@ -17,14 +17,11 @@ const mutations = {
 
 const actions = {
   signup ({ commit }, authData) {
-    globalAxios
-      .post('/api/v1/rest-auth/registration/', {
-        username: authData.username,
+    axiosAuth
+      .post('signUp?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
         email: authData.email,
-        password1: authData.password,
-        password2: authData.password,
-        is_staff: authData.is_staff,
-        is_administrator: authData.is_administrator
+        password: authData.password,
+        returnSecureToken: true
       })
       .then(res => {
         commit('AUTH_USER', {
@@ -37,23 +34,21 @@ const actions = {
   },
 
   login ({ commit }, authData) {
-    console.log('logging in:', authData)
-    // globalAxios
-    //   .post('/api/v1/rest-auth/login/', {
-    //     username: authData.username,
-    //     email: authData.email,
-    //     password: authData.password
-    //   })
-    //   .then(res => {
-    //     commit('AUTH_USER', {
-    //       token: res.data.key
-    //     })
-    //     // save token locally
-    //     localStorage.setItem('token', res.data.key)
-    //     // save email locally for use in login
-    //     localStorage.setItem('email', authData.email)
-    //   })
-    //   .catch(error => console.log(error))
+    axiosAuth
+      .post('signInWithPassword?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
+        email: authData.email,
+        password: authData.password
+      })
+      .then(res => {
+        commit('AUTH_USER', {
+          token: res.data.key
+        })
+        // save token locally
+        localStorage.setItem('token', res.data.key)
+        // save email locally for use in login
+        localStorage.setItem('email', authData.email)
+      })
+      .catch(error => console.log(error))
   },
 
   tryAutoLogin ({ commit }) {

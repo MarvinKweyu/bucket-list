@@ -4,13 +4,6 @@
       <v-card-text>
         <v-form v-if="show" class="login-detail">
 
-          <v-text-field
-            color="darkolivegreen"
-            label="username"
-            prepend-icon="mdi-account-circle"
-            v-model = "username"
-          />
-
           <v-text-field v-model="email" color="darkolivegreen" label="email" prepend-icon="mdi-account-circle" />
           <v-text-field
             v-model="password"
@@ -25,7 +18,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn  dark class="my-2 my-sm-0 option">Signup</v-btn>
+        <v-btn  @click="signUp" dark class="my-2 my-sm-0 option">SignUp</v-btn>
         <v-spacer></v-spacer>
         <v-btn dark @click="login" class="my-2 my-0 option">Login</v-btn>
       </v-card-actions>
@@ -39,7 +32,6 @@ export default {
   data () {
     return {
       showPassword: false,
-      username: '',
       email: '',
       password: '',
       show: true
@@ -48,12 +40,20 @@ export default {
   methods: {
     login () {
       const loginForm = {
-        username: this.username,
         email: this.email,
         password: this.password
 
       }
       this.$store.dispatch('login', loginForm)
+      this.$router.push({ name: 'Home' })
+    },
+    signUp () {
+      const signUpForm = {
+        email: this.email,
+        password: this.password
+
+      }
+      this.$store.dispatch('signup', signUpForm)
       this.$router.push({ name: 'Home' })
     },
     onReset (evt) {

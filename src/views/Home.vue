@@ -60,7 +60,7 @@ export default {
       this.$router.push({ path: 'in-progress' })
     },
     goHome () {
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/home' })
     },
     closeDialog () {
       this.dialog = false
