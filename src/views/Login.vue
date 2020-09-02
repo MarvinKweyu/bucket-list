@@ -2,9 +2,21 @@
   <div class="container is-fluid col-6">
     <v-card width="500" height="350" class="mx-auto mt-5">
       <v-card-text>
-        <v-form v-if="show" class="login-detail">
+        <v-form
+          class="login-detail"
+          ref="form"
+          v-model="valid"
+          lazy-validation
+        >
 
-          <v-text-field v-model="email" color="darkolivegreen" label="email" prepend-icon="mdi-account-circle" />
+          <v-text-field
+            :rules="emailRules"
+            v-model="email"
+            color="darkolivegreen"
+            label="email"
+            prepend-icon="mdi-account-circle"
+            required
+          />
           <v-text-field
             v-model="password"
             color="darkolivegreen"
@@ -13,6 +25,8 @@
             prepend-icon="mdi-lock"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword =! showPassword"
+            :rules="passwordRules"
+            required
           />
         </v-form>
       </v-card-text>
@@ -34,7 +48,15 @@ export default {
       showPassword: false,
       email: '',
       password: '',
-      show: true
+      valid: true,
+      emailRules: [
+        v => !!v || 'A title is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      passwordRules: [
+        v => !!v || 'Please set a password',
+        v => (v && v.length > 8) || 'For a stronger password, set it equal or greater than 9 characters'
+      ]
     }
   },
   methods: {
@@ -45,6 +67,7 @@ export default {
 
       }
       this.$store.dispatch('login', loginForm)
+      this.$refs.form.reset()
       this.$router.push({ name: 'Home' })
     },
     signUp () {
@@ -54,6 +77,7 @@ export default {
 
       }
       this.$store.dispatch('signup', signUpForm)
+      this.$refs.form.reset()
       this.$router.push({ name: 'Home' })
     },
     onReset (evt) {
