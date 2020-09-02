@@ -10,7 +10,7 @@
 
   <v-spacer></v-spacer>
       <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>
-      <v-btn outlined>Logout</v-btn>
+      <v-btn outlined @click="onLogout">Logout</v-btn>
 </v-app-bar>
 </template>
 
@@ -20,6 +20,12 @@ export default {
   data () {
     return {
       goDark: false
+    }
+  },
+  methods: {
+    onLogout () {
+      this.$store.dispatch('logout')
+      this.$router.push({ name: 'Login' })
     }
   },
   watch: {

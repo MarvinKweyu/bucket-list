@@ -1,4 +1,5 @@
 <template>
+  <v-main class="whole-page">
   <div class="container is-fluid col-6">
     <v-card width="500" height="350" class="mx-auto mt-5">
       <v-card-text>
@@ -38,6 +39,7 @@
       </v-card-actions>
     </v-card>
   </div>
+  </v-main>
 </template>
 
 <script>
@@ -90,9 +92,13 @@ export default {
 </script>
 
 <style>
+  .whole-page{
+    height: 100vh;
+    /*background: ghostwhite;*/
+  }
 .container {
-  display: grid;
-  place-items: center;
+  /*display: grid;*/
+  /*place-items: center;*/
 }
 .login-detail {
   /* padding-top: 20px; */

@@ -13,6 +13,10 @@ const mutations = {
   AUTH_USER (state, userData) {
     state.idToken = userData.token
     state.userId = userData.userId
+  },
+  CLEAR_AUTH_DATA (state) {
+    state.idToken = null
+    state.userId = null
   }
 }
 
@@ -67,6 +71,9 @@ const actions = {
       token: token,
       userId: userId
     })
+  },
+  logout ({ commit }) {
+    commit('CLEAR_AUTH_DATA')
   }
 }
 
