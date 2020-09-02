@@ -1,5 +1,7 @@
 import globalAxios from 'axios'
 
+const token = localStorage.getItem('token')
+
 const state = {
   allProjects: null,
   projectDetail: null,
@@ -21,7 +23,7 @@ const mutations = {
 
 const actions = {
   createProject ({ commit }, postInfo) {
-    globalAxios.post('/posts/posts.json', postInfo)
+    globalAxios.post('/posts/posts.json' + '?auth=' + token, postInfo)
       .then(
         res => {
           // console.log(res)
@@ -31,7 +33,7 @@ const actions = {
       })
   },
   getAllProjects ({ commit }) {
-    globalAxios.get('/posts/posts.json')
+    globalAxios.get('/posts/posts.json' + '?auth=' + token)
       .then(res => {
         // console.log(res.data)
         commit('SET_PROJECTS_OBJECT', res.data)
@@ -59,7 +61,7 @@ const actions = {
       }
     }
 
-    globalAxios.patch('/posts/posts.json', updatedPost)
+    globalAxios.patch('/posts/posts.json' + '?auth=' + token, updatedPost)
       .then(
         res => {
           // console.log(res)
