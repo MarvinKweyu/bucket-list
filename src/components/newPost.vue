@@ -79,12 +79,14 @@ export default {
       const newProject = {
         projectTitle: this.projectTitle,
         projectDetail: this.projectDetail,
-        projectDate: dateTime
+        projectDate: dateTime,
+        projectAuthor: localStorage.getItem('email')
       }
 
       this.$store.dispatch('createProject', newProject)
       this.$store.dispatch('getAllProjects')
       this.$refs.form.reset()
+      this.$emit('confirmPostCreation')
       this.$emit('closeDialog')
     },
     closeDialog () {

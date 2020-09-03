@@ -47,7 +47,6 @@ const actions = {
         returnSecureToken: true
       })
       .then(res => {
-        console.log(res)
         commit('AUTH_USER', {
           token: res.data.idToken,
           userId: res.data.localId
@@ -55,7 +54,7 @@ const actions = {
         // save token locally
         localStorage.setItem('token', res.data.idToken)
         // // save email locally for use in login
-        // localStorage.setItem('email', authData.email)
+        localStorage.setItem('email', authData.email)
       })
       .catch(error => console.log(error))
   },

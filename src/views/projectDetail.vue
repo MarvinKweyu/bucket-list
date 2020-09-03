@@ -12,7 +12,10 @@
 
   <div v-if="editContent === false">
   <h2> {{postDetail.projectTitle}}</h2>
-  <small>{{postDetail.projectDate}}</small>
+    <v-row>
+      <small class="mr-2">{{postDetail.projectDate}}</small>
+      <small>{{postDetail.projectAuthor}}</small>
+    </v-row>
   <div>
     {{postDetail.projectDetail}}
   </div>
@@ -111,10 +114,17 @@ export default {
     },
     saveChanges () {
       this.loader = 'loading3'
+      const today = new Date()
+      const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
+      const dateTime = date + ' ' + time
+
       const project = {
         projectTitle: this.projectTitle,
         projectDetail: this.projectDetail,
-        projectDate: this.projectDate
+        projectDate: this.projectDate,
+        dateUpdated: dateTime,
+        projectUpdater: localStorage.getItem('email')
       }
       this.$store.dispatch('updateProject', project)
       this.$store.dispatch('getAllProjects')
