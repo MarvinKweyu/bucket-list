@@ -62,7 +62,7 @@ export default {
       dialog: false,
       snackbar: false,
       text: 'Project suggestion successful',
-      timeout: 1000
+      timeout: 2000
     }
   },
   methods: {

@@ -9,7 +9,7 @@
   </div>
 
   <v-spacer></v-spacer>
-      <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>
+<!--      <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>-->
       <v-btn outlined @click="onLogout">Logout</v-btn>
 </v-app-bar>
 </template>

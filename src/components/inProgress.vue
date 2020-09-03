@@ -1,6 +1,8 @@
 <template>
   <v-main class="container">
-    <p>In progress</p>
+    <div class="d-flex justify-center">
+       <p>In progress</p>
+    </div>
   </v-main>
 </template>
 

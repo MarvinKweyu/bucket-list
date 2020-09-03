@@ -1,5 +1,5 @@
 <template>
-<v-main>
+<v-main class="align-content-center" style="margin-left: 15%">
   <v-card width="70vw">
   <v-list two-line>
     <v-list-item-group
@@ -27,10 +27,19 @@
           :key="index"
         ></v-divider>
         </div>
+
       </template>
     </v-list-item-group>
   </v-list>
   </v-card>
+<!--  <div class="text-center">-->
+<!--    <v-pagination-->
+<!--      color="darkolivegreen"-->
+<!--      dark-->
+<!--      v-model="page"-->
+<!--      :length="projects.length"-->
+<!--    ></v-pagination>-->
+<!--  </div>-->
 </v-main>
 </template>
 
@@ -38,7 +47,8 @@
 export default {
   name: 'Project',
   data: () => ({
-    selected: [2]
+    selected: [2],
+    page: 1
   }),
   methods: {
     getProjectDetails (projectId) {

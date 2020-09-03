@@ -70,6 +70,7 @@ export default {
       }
       this.$store.dispatch('login', loginForm)
       this.$refs.form.reset()
+      this.$store.dispatch('getAllProjects')
       this.$router.push({ name: 'Home' })
     },
     signUp () {

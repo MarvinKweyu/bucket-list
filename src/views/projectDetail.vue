@@ -12,11 +12,11 @@
 
   <div v-if="editContent === false">
   <h2> {{postDetail.projectTitle}}</h2>
-    <v-row>
-      <small class="mr-2">{{postDetail.projectDate}}</small>
-      <small>{{postDetail.projectAuthor}}</small>
+    <v-row class="ml-3">
+      <small class="mr-2">Published: {{postDetail.projectDate}}</small>
+      <small>By: {{postDetail.projectAuthor | publishingAuthor}}</small>
     </v-row>
-  <div>
+  <div class="mt-2">
     {{postDetail.projectDetail}}
   </div>
   <v-spacer></v-spacer>
@@ -28,7 +28,7 @@
   </v-row>
   </div>
 
-  <div v-else class="editContent">
+  <div v-else class="editContent" style="margin-left: 15%">
     <v-text-field color="darkolivegreen"
                   label="project title"
                   prepend-icon="mdi-domain"
