@@ -5,6 +5,7 @@ import Login from '../views/Login'
 import projectDetail from '../views/projectDetail'
 import Project from '../components/Project'
 import inProgress from '../components/inProgress'
+import AccountRecovery from '../views/AccountRecovery'
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/recovery',
+    name: 'Recovery',
+    component: AccountRecovery
   },
   {
     path: '/home',

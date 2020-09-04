@@ -73,6 +73,18 @@ const actions = {
   },
   logout ({ commit }) {
     commit('CLEAR_AUTH_DATA')
+  },
+  resetPassword ({ commit, dispatch }, resetDetails) {
+    axiosAuth.post('accounts:sendOobCode?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
+      email: resetDetails,
+      requestType: 'PASSWORD_RESET'
+    })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 

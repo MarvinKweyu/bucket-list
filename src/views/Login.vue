@@ -37,6 +37,7 @@
         <v-spacer></v-spacer>
         <v-btn dark @click="login" class="my-2 my-0 option">Login</v-btn>
       </v-card-actions>
+      <p class="mt-2 d-flex justify-center">Reset password</p>
     </v-card>
   </div>
   </v-main>
@@ -93,6 +94,10 @@ export default {
 </script>
 
 <style>
+  p{
+    color: darkolivegreen;
+    cursor: pointer;
+  }
   .whole-page{
     height: 100vh;
     /*background: ghostwhite;*/
