@@ -16,6 +16,9 @@ export default {
   components: {
     Header
   },
+  created () {
+    this.$store.dispatch('tryAutoLogin')
+  },
   computed: {
     auth () {
       // returns authentication ; null or a value

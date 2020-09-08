@@ -53,7 +53,7 @@ export default {
       password: '',
       valid: true,
       emailRules: [
-        v => !!v || 'A title is required',
+        v => !!v || 'Key in an email',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ],
       passwordRules: [
