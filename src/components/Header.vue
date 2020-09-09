@@ -1,7 +1,7 @@
 <template>
     <v-app-bar
   app
-  light
+  dark
   shaped
 >
   <div class="d-flex align-center">
@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
   h2{
-    /*font-style: italic;*/
+    font-family: 'Josefin Sans', sans-serif;
     color: darkolivegreen;
   }
 </style>
