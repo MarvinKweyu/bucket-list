@@ -71,6 +71,7 @@ export default {
       }
       this.$store.dispatch('login', loginForm)
       this.$refs.form.reset()
+      // place animation here 'loggin in' to last a 3 second or so
       this.$store.dispatch('getAllProjects')
       this.$router.push({ name: 'Home' })
     },
