@@ -6,7 +6,7 @@ import projectDetail from '../views/projectDetail'
 import Project from '../components/Project'
 import inProgress from '../components/inProgress'
 import AccountRecovery from '../views/AccountRecovery'
-import user from '../store/modules/user'
+// import user from '../store/modules/user'
 
 Vue.use(VueRouter)
 
@@ -27,7 +27,7 @@ const routes = [
     component: Home,
     // protect home from navigation without login
     beforeEnter (to, from, next) {
-      console.log('token', user.state.idToken)
+      // console.log('token', user.state.idToken)
       if (localStorage.getItem('token')) {
         next()
       } else {

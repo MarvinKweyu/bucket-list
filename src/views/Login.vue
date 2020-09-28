@@ -1,7 +1,7 @@
 <template>
   <v-main class="whole-page">
   <div class="container is-fluid col-6">
-    <v-card width="500" height="350" class="mx-auto mt-5">
+    <v-card width="500" height="350" class="mx-auto mt-5" v-if="!showLoader">
       <v-card-text>
         <v-form
           class="login-detail"
@@ -39,15 +39,25 @@
       </v-card-actions>
       <p class="mt-2 d-flex justify-center">Reset password</p>
     </v-card>
+
+    <div class="text-center mt-5" v-else>
+      <v-progress-circular
+        :size="50"
+        color="darkolivegreen"
+        indeterminate
+      > loading</v-progress-circular>
+    </div>
   </div>
   </v-main>
 </template>
 
 <script>
+
 export default {
   name: 'Login',
   data () {
     return {
+      showLoader: false,
       showPassword: false,
       email: '',
       password: '',
@@ -70,9 +80,13 @@ export default {
 
       }
       this.$store.dispatch('login', loginForm)
-      this.$refs.form.reset()
-      this.$store.dispatch('getAllProjects')
-      this.$router.push({ name: 'Home' })
+      // loader here
+      this.showLoader = true
+      setTimeout(() => {
+        this.$store.dispatch('getAllProjects')
+        this.showLoader = false
+        this.$router.push({ name: 'Home' })
+      }, 3000)
     },
     signUp () {
       const signUpForm = {
@@ -83,6 +97,7 @@ export default {
       this.$store.dispatch('signup', signUpForm)
       this.$refs.form.reset()
       // loader here
+      this.showLoader = true
       this.$router.push({ name: 'Home' })
     },
     onReset (evt) {

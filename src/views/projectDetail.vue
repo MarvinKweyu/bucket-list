@@ -49,7 +49,7 @@
     </v-textarea>
     <v-row class="d-flex justify-center">
       <v-btn @click="viewProjectDetail" class="ma-2" outlined color="darkolivegreen">
-        <v-icon dark left>mdi-pencil</v-icon>Cancel
+        <v-icon dark left>mdi-cancel</v-icon>Cancel
       </v-btn>
 
       <v-btn
