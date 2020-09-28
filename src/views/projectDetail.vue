@@ -14,7 +14,7 @@
   <h2> {{postDetail.projectTitle}}</h2>
     <v-row class="ml-3">
       <small class="mr-2">Published: {{postDetail.projectDate}}</small>
-      <small>By: {{postDetail.projectAuthor | publishingAuthor}}</small>
+      <small>By: {{postDetail.projectAuthor}}</small>
     </v-row>
   <div class="mt-2">
     {{postDetail.projectDetail}}

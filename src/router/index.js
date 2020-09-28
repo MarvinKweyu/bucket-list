@@ -46,7 +46,8 @@ const routes = [
         component: inProgress
       },
       {
-        path: ':projectId',
+        // path: ':projectId', // optional parameter
+        path: '/details',
         name: 'projectDetail',
         component: projectDetail
       }

@@ -82,6 +82,7 @@ export default {
       }
       this.$store.dispatch('signup', signUpForm)
       this.$refs.form.reset()
+      // loader here
       this.$router.push({ name: 'Home' })
     },
     onReset (evt) {
