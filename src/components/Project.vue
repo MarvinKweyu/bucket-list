@@ -54,6 +54,8 @@ export default {
     getProjectDetails (projectId) {
       this.$store.dispatch('getProjectDetail', projectId)
       this.$router.push({ name: 'projectDetail' })
+      // const sample = 'detail'
+      // this.$router.push({ name: 'projectDetail', params: { sample } })
     }
   },
   computed: {

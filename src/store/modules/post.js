@@ -45,6 +45,7 @@ const actions = {
   },
   getProjectDetail ({ commit, state }, projectId) {
     // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
+    console.log(projectId)
     commit('SET_PROJECT_DETAIL', projectId)
   },
   updateProject ({ commit, state }, projectObject) {
