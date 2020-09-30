@@ -4,6 +4,7 @@ import router from './router'
 import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import store from './store'
+import './registerServiceWorker'
 
 axios.defaults.baseURL = 'https://martmarv.firebaseio.com/'
 axios.defaults.headers.get.Accepts = 'application/json'
