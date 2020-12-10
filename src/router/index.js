@@ -47,7 +47,7 @@ const routes = [
       },
       {
         // path: ':projectId', // optional parameter
-        path: '/details',
+        path: '/details/:projectLogId',
         name: 'projectDetail',
         component: projectDetail
       }

@@ -35,7 +35,6 @@ const actions = {
     const token = localStorage.getItem('token')
     globalAxios.get('/posts/posts.json' + '?auth=' + token)
       .then(res => {
-        // console.log(res.data)
         commit('SET_PROJECTS_OBJECT', res.data)
         commit('SET_PROJECTS', Object.values(res.data))
       })
@@ -45,7 +44,6 @@ const actions = {
   },
   getProjectDetail ({ commit, state }, projectId) {
     // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
-    console.log(projectId)
     commit('SET_PROJECT_DETAIL', projectId)
   },
   updateProject ({ commit, state }, projectObject) {

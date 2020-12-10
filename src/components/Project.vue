@@ -48,20 +48,24 @@ export default {
   name: 'Project',
   data: () => ({
     selected: [2],
-    page: 1
+    page: 1,
+    projects: []
   }),
   methods: {
     getProjectDetails (projectId) {
       this.$store.dispatch('getProjectDetail', projectId)
-      this.$router.push({ name: 'projectDetail' })
-      // const sample = 'detail'
-      // this.$router.push({ name: 'projectDetail', params: { sample } })
+      const projectLogId = projectId.projectTitle.toLowerCase().replace(/\s/g, '-')
+      this.$router.push({ name: 'projectDetail', params: { projectLogId } })
     }
   },
   computed: {
-    projects () {
-      return this.$store.getters.getAllProjects
-    }
+    // * alternatively use this
+    // projects () {
+    //   return this.$store.getters.getAllProjects
+    // }
+  },
+  created () {
+    this.projects = this.$store.getters.getAllProjects
   }
 }
 </script>
