@@ -21,6 +21,28 @@
       <v-btn dark @click="resetPassword">Recover</v-btn>
     </v-card-actions>
   </v-card>
+
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="timeout"
+    top
+    left
+    shaped
+    :color=recovery
+  >
+    {{ text }}
+
+    <template v-slot:action="{ attrs }">
+      <v-btn
+        color="white"
+        text
+        v-bind="attrs"
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
 </v-main>
 </template>
 
@@ -28,15 +50,35 @@
 export default {
   name: 'AccountRecovery',
   data: () => ({
+    valid: true,
     email: '',
     emailRules: [
       v => !!v || 'Your email is required',
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-    ]
+    ],
+    snackbar: false,
+    text: '',
+    recovery: 'success',
+    timeout: 2000
   }),
   methods: {
     resetPassword () {
-      this.$router.dispatch('resetPassword', this.email)
+      const resetInfo = {
+        email: this.email,
+        errorResetMessage: null
+      }
+      this.$store.dispatch('resetPassword', resetInfo)
+      const resetFail = this.$store.getters.resetError
+      console.log('reset fail', resetFail)
+      if (resetFail) {
+        this.text = 'Email does not exist'
+        this.recovery = '#F44336'
+      } else {
+        this.text = 'Check your mail inbox for password reset information'
+        this.recovery = 'success'
+      }
+
+      this.snackbar = true
     }
   }
 }
