@@ -17,7 +17,7 @@ const routes = [
     component: Login
   },
   {
-    path: '/recovery',
+    path: '/account-recovery',
     name: 'Recovery',
     component: AccountRecovery
   },

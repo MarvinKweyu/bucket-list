@@ -106,7 +106,7 @@ export default {
       //   });
     },
     resetPassword () {
-      this.$router.push({ path: 'recovery' })
+      this.$router.push({ path: 'account-recovery' })
     }
   }
 }
