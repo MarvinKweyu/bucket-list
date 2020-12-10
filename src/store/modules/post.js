@@ -60,8 +60,19 @@ const actions = {
         updatedPost = project
       }
     }
+    const objectKeys = Object.keys(updatedPost)
+    let newPost = null
+    objectKeys.find(item => {
+      if (item.startsWith('-')) {
+        newPost = item
+      }
+    })
+    const newUpdate = {
+      newPost: updatedPost[newPost]
+    }
+    console.log('Updated post detail', newUpdate)
 
-    globalAxios.patch('/posts/posts.json' + '?auth=' + token, updatedPost)
+    globalAxios.patch('/posts/posts.json' + '?auth=' + token, newUpdate)
       .then(
         res => {
           // console.log(res)
