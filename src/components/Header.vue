@@ -2,7 +2,6 @@
     <v-app-bar
   app
   dark
-  shaped
 >
   <div class="d-flex align-center">
     <h2>MartMarv</h2>
