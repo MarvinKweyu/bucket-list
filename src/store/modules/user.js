@@ -4,7 +4,8 @@ import router from '../../router'
 const state = {
   idToken: null,
   userId: null,
-  user: null
+  user: null,
+  errorResetMessage: null
 }
 
 const mutations = {
@@ -18,6 +19,9 @@ const mutations = {
   CLEAR_AUTH_DATA (state) {
     state.idToken = null
     state.userId = null
+  },
+  EMAIL_NOT_FOUND (state, errorMessage) {
+    state.errorResetMessage = errorMessage
   }
 }
 
@@ -29,7 +33,7 @@ const actions = {
       router.replace('/')
     }, expirationTime * 1000)
   },
-  signup ({ commit, dispatch }, authData) {
+  signUp ({ commit, dispatch }, authData) {
     axiosAuth
       .post('accounts:signUp?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
         email: authData.email,
@@ -102,15 +106,16 @@ const actions = {
     localStorage.removeItem('expiresIn')
   },
   resetPassword ({ commit, dispatch }, resetDetails) {
+    commit('EMAIL_NOT_FOUND', resetDetails.errorResetMessage)
     axiosAuth.post('accounts:sendOobCode?key=AIzaSyC7rKqPtZhHD8g3U0ObI-XwqQsFDgKIxuM', {
-      email: resetDetails,
+      email: resetDetails.email,
       requestType: 'PASSWORD_RESET'
     })
       .then(res => {
-        console.log(res)
+        console.log(res.data)
       })
       .catch(error => {
-        console.log(error)
+        commit('EMAIL_NOT_FOUND', error)
       })
   }
 }
@@ -118,6 +123,9 @@ const actions = {
 const getters = {
   isAuthenticated (state) {
     return state.idToken !== null
+  },
+  resetError (state) {
+    return state.errorResetMessage
   }
 }
 

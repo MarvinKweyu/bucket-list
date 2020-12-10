@@ -37,7 +37,7 @@
         <v-spacer></v-spacer>
         <v-btn dark @click="login" class="my-2 my-0 option">Login</v-btn>
       </v-card-actions>
-      <p class="mt-2 d-flex justify-center">Reset password</p>
+      <p @click="resetPassword" class="mt-2 d-flex justify-center">Reset password</p>
     </v-card>
 
     <div class="text-center mt-5" v-else>
@@ -94,7 +94,7 @@ export default {
         password: this.password
 
       }
-      this.$store.dispatch('signup', signUpForm)
+      this.$store.dispatch('signUp', signUpForm)
       this.$refs.form.reset()
       // loader here
       this.showLoader = true
@@ -104,6 +104,9 @@ export default {
       //   this.$nextTick(() => {
       //     this.show = true;
       //   });
+    },
+    resetPassword () {
+      this.$router.push({ path: 'account-recovery' })
     }
   }
 }
