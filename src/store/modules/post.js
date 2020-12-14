@@ -46,7 +46,7 @@ const actions = {
     // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
     commit('SET_PROJECT_DETAIL', projectId)
   },
-  updateProject ({ commit, state }, projectObject) {
+  updateProject ({ commit, state, dispatch }, projectObject) {
     const token = localStorage.getItem('token')
     // update project based on comparing date
     const allProjects = state.projectsObjectOfObjects
@@ -62,20 +62,21 @@ const actions = {
     }
     const objectKeys = Object.keys(updatedPost)
     let newPost = null
-    objectKeys.find(item => {
+    objectKeys.forEach(item => {
       if (item.startsWith('-')) {
         newPost = item
       }
     })
+    const postDetail = updatedPost[newPost]
     const newUpdate = {
-      newPost: updatedPost[newPost]
+      [newPost]: postDetail
     }
-    console.log('Updated post detail', newUpdate)
 
     globalAxios.patch('/posts/posts.json' + '?auth=' + token, newUpdate)
       .then(
         res => {
           // console.log(res)
+          dispatch('getAllProjects')
         })
       .catch(error => {
         console.log(error)
