@@ -35,7 +35,6 @@ const actions = {
     const token = localStorage.getItem('token')
     globalAxios.get('/posts/posts.json' + '?auth=' + token)
       .then(res => {
-        // console.log(res.data)
         commit('SET_PROJECTS_OBJECT', res.data)
         commit('SET_PROJECTS', Object.values(res.data))
       })
@@ -45,10 +44,9 @@ const actions = {
   },
   getProjectDetail ({ commit, state }, projectId) {
     // console.log(stringSimilarity.compareTwoStrings('healed', 'sealed'))
-    console.log(projectId)
     commit('SET_PROJECT_DETAIL', projectId)
   },
-  updateProject ({ commit, state }, projectObject) {
+  updateProject ({ commit, state, dispatch }, projectObject) {
     const token = localStorage.getItem('token')
     // update project based on comparing date
     const allProjects = state.projectsObjectOfObjects
@@ -62,11 +60,23 @@ const actions = {
         updatedPost = project
       }
     }
+    const objectKeys = Object.keys(updatedPost)
+    let newPost = null
+    objectKeys.forEach(item => {
+      if (item.startsWith('-')) {
+        newPost = item
+      }
+    })
+    const postDetail = updatedPost[newPost]
+    const newUpdate = {
+      [newPost]: postDetail
+    }
 
-    globalAxios.patch('/posts/posts.json' + '?auth=' + token, updatedPost)
+    globalAxios.patch('/posts/posts.json' + '?auth=' + token, newUpdate)
       .then(
         res => {
           // console.log(res)
+          dispatch('getAllProjects')
         })
       .catch(error => {
         console.log(error)
