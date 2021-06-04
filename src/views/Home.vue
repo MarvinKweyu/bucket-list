@@ -1,11 +1,10 @@
 <template>
- <v-container class="container is-fluid">
-     <v-tabs color="darkolivegreen" centered>
-       <v-tab ripple @click="goHome">All suggestions</v-tab>
-       <v-tab @click="inProgress" >In progress</v-tab>
-     </v-tabs>
+  <v-container class="container is-fluid">
+    <v-main>
+      <router-view></router-view>
+    </v-main>
 
-   <v-container>
+    <!-- <v-container>
      <v-row justify="center">
        <v-btn small class="justify-center" fab dark color="darkolivegreen"  @click="dialog = true">
          <v-icon dark>mdi-plus</v-icon>
@@ -43,19 +42,17 @@
      <v-row justify="center">
        <router-view></router-view>
      </v-row>
-   </v-container>
- </v-container>
+   </v-container> -->
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-// import homeTab from '../components/homeTab'
-import newPost from '../components/newPost'
+// import { mapActions } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    'app-new-post': newPost
+    // 'app-new-post': newPost
   },
   data () {
     return {
