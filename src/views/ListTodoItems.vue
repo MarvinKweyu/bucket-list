@@ -6,19 +6,18 @@
    <v-tab @click="incomplete">Incomplete</v-tab>
  </v-tabs>
 
-  <TodoList v-if="allItems" :todoItems="allItems"/>
-<!--  <p>second {{allItems}}</p>-->
+  <TodoList v-if="allOfThem" :todoItems="allOfThem"/>
 
-<!--  <v-row justify="center">-->
-<!--    <v-btn small class="justify-center" fab dark color="darkolivegreen"  @click="dialog = true">-->
-<!--      <v-icon dark>mdi-plus</v-icon>-->
-<!--    </v-btn>-->
-<!--  </v-row>-->
+  <v-row justify="center">
+    <v-btn small class="justify-center" fab dark color="darkolivegreen"  @click="dialog = true">
+      <v-icon dark>mdi-plus</v-icon>
+    </v-btn>
+  </v-row>
 </v-container>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import TodoList from '../components/TodoList'
 export default {
   name: 'ListTodoItems',
@@ -26,12 +25,9 @@ export default {
     TodoList
   },
   computed: {
-    ...mapState([
-      'allTodoItems'
-    ]),
-    allItems () {
-      return this.$store.getters.allOfThem
-    }
+    ...mapGetters([
+      'allOfThem'
+    ])
   },
   methods: {
     showAllItems () {
