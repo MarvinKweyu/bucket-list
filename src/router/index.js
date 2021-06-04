@@ -18,7 +18,6 @@ const routes = [
   },
   {
     path: '/todos',
-    name: 'Home',
     component: () => import('@/views/Home.vue'),
     children: [
       {
