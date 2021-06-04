@@ -1,8 +1,6 @@
 <template>
 <v-container>
-  <p>These are all the items. They can be filtered by those complete and those incomplete</p>
-
- <v-tabs color="darkolivegreen" centered>
+ <v-tabs color="darkolivegreen" class="mb-2" centered >
    <v-tab ripple @click="showAllItems">All items</v-tab>
    <v-tab @click="inProgress">Completed</v-tab>
    <v-tab @click="incomplete">Incomplete</v-tab>

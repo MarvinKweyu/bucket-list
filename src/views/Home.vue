@@ -1,5 +1,5 @@
 <template>
-  <v-container class="container is-fluid">
+  <v-container class="container">
     <v-main>
       <router-view></router-view>
     </v-main>

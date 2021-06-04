@@ -1,6 +1,5 @@
 <template>
 <v-container>
-  <p> a list of items</p>
   <v-main class="align-content-center" style="margin-left: 15%">
     <v-card width="70vw">
       <v-list two-line>
@@ -49,6 +48,7 @@ export default {
   },
   methods: {
     getProjectDetails (item) {
+      // this.$router.push({ path: `todos/details/${item.id}` })
       this.$router.push({ name: 'todoItemDetail', params: { todoItemId: item.id } })
     }
   }

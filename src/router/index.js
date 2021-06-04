@@ -17,7 +17,7 @@ const routes = [
     component: () => import('@/views/AccountRecovery.vue')
   },
   {
-    path: '/home',
+    path: '/todos',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
     children: [
