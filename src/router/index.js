@@ -1,66 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login'
-import projectDetail from '../views/projectDetail'
-import Project from '../components/Project'
 import inProgress from '../components/inProgress'
-import AccountRecovery from '../views/AccountRecovery'
 // import user from '../store/modules/user'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('@/views/Login.vue')
   },
   {
     path: '/account-recovery',
     name: 'Recovery',
-    component: AccountRecovery
+    component: () => import('@/views/AccountRecovery.vue')
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home,
-    // protect home from navigation without login
-    beforeEnter (to, from, next) {
-      // console.log('token', user.state.idToken)
-      if (localStorage.getItem('token')) {
-        next()
-      } else {
-        next('/')
-      }
-    },
+    component: () => import('@/views/Home.vue'),
     children: [
       {
         path: '',
-        name: 'allProjects',
-        component: Project
+        name: 'todoItems',
+        component: () => import('@/views/ListTodoItems.vue')
+      },
+      {
+        // path: ':projectId', // optional parameter
+        path: '/details/:todoItemId',
+        name: 'todoItemDetail',
+        component: () => import('@/views/TodoItemDetail.vue')
       },
       {
         path: '/in-progress',
         name: 'inProgress,',
         component: inProgress
-      },
-      {
-        // path: ':projectId', // optional parameter
-        path: '/details/:projectLogId',
-        name: 'projectDetail',
-        component: projectDetail
       }
     ]
-  },
-
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 
