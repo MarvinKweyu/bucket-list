@@ -1,47 +1,43 @@
 <template>
-    <v-app-bar
-  app
-  dark
->
-  <div class="d-flex align-center">
-    <h2>MartMarv</h2>
-  </div>
+  <v-app-bar app dark>
+    <div class="d-flex align-center">
+      <h2>ToDo</h2>
+    </div>
 
-  <v-spacer></v-spacer>
-<!--      <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>-->
-      <v-btn outlined @click="onLogout">Logout</v-btn>
-</v-app-bar>
+    <v-spacer></v-spacer>
+    <!--      <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>-->
+    <v-btn outlined @click="onLogout">Logout</v-btn>
+  </v-app-bar>
 </template>
 
 <script>
 export default {
   name: 'Header',
-  data () {
+  data() {
     return {
       goDark: false
     }
   },
   methods: {
-    onLogout () {
+    onLogout() {
       this.$store.dispatch('logout')
     }
   },
   watch: {
-    changer () {
+    changer() {
       if (this.goDark === true) {
         return (this.$vuetify.theme.dark = true)
       } else {
         return (this.$vuetify.theme.dark = false)
       }
     }
-
   }
 }
 </script>
 
 <style scoped>
-  h2{
-    font-family: 'Josefin Sans', sans-serif;
-    color: darkolivegreen;
-  }
+h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  color: darkolivegreen;
+}
 </style>
