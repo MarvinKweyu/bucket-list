@@ -8,8 +8,8 @@
 
   <TodoList v-if="allOfThem" :todoItems="allOfThem"/>
 
-  <v-row justify="center">
-    <v-btn small class="justify-center" fab dark color="darkolivegreen"  @click="dialog = true">
+  <v-row justify="end">
+    <v-btn small class="justify-center" fab dark color="darkolivegreen"  @click="dialog = true" title="Add ToDo item">
       <v-icon dark>mdi-plus</v-icon>
     </v-btn>
   </v-row>
