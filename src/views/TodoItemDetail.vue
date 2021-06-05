@@ -21,7 +21,13 @@
         <v-icon dark left>mdi-arrow-left</v-icon>Back
       </v-btn>
 
-      <v-btn @click="markAsDone" class="ma-2" outlined color="darkolivegreen">
+      <v-btn
+        v-if="!todoItemDetail.markDone"
+        @click="markAsDone"
+        class="ma-2"
+        outlined
+        color="darkolivegreen"
+      >
         <v-icon dark left>mdi-checkbox-marked-circle</v-icon>Mark done
       </v-btn>
     </div>
@@ -37,7 +43,7 @@
       </div>
       <v-spacer></v-spacer>
 
-      <v-row class="d-flex justify-center">
+      <v-row class="d-flex justify-center" v-if="!todoItemDetail.markDone">
         <v-btn
           @click="editProject"
           class="ma-2"
@@ -52,7 +58,7 @@
     <div v-else class="editContent" style="margin-left: 15%">
       <v-text-field
         color="darkolivegreen"
-        label="project title"
+        label="bucket title"
         prepend-icon="mdi-domain"
         full-width
         v-model="todoItemDetail.projectTitle"
@@ -107,6 +113,7 @@ export default {
   data() {
     return {
       editContent: false,
+      bucketComplete: false,
       projectTitle: '',
       projectDetail: '',
       projectDate: '',
@@ -160,7 +167,12 @@ export default {
     goHome() {
       this.$router.push({ name: 'todoItems' })
     },
-    markAsDone() {},
+    markAsDone() {
+      this.bucketComplete = true
+      // console.log(this.$route.params.todoItemId)
+      this.saveChanges()
+      this.showHome()
+    },
     saveChanges() {
       this.loader = 'loading3'
       const today = new Date()
@@ -179,9 +191,16 @@ export default {
         projectDetail: this.todoItemDetail.projectDetail,
         projectDate: this.todoItemDetail.projectDate,
         dateUpdated: dateTime,
+        markDone: false,
         projectUpdater: localStorage.getItem('email')
       }
-      this.$store.dispatch('updateProject', project)
+
+      if (this.bucketComplete) {
+        console.log('markign complete')
+        project.markDone = true
+      }
+      const projectId = this.$route.params.todoItemId
+      this.$store.dispatch('updateProject', { project, projectId })
     }
   }
 }
