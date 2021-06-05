@@ -1,13 +1,13 @@
 <template>
   <v-container>
     <div class="d-flex justify-space-between">
-      <v-btn @click="showHome" class="ma-2" outlined color="darkolivegreen">
+      <v-btn @click="goHome" class="ma-2" outlined color="darkolivegreen">
         <v-icon dark left>mdi-arrow-left</v-icon>Cancel
       </v-btn>
 
-      <v-btn @click="markAsDone" class="ma-2" outlined color="darkolivegreen">
+      <!-- <v-btn @click="markAsDone" class="ma-2" outlined color="darkolivegreen">
         <v-icon dark left>mdi-checkbox-marked-circle</v-icon>Mark done
-      </v-btn>
+      </v-btn> -->
     </div>
 
     <div class="editContent" style="margin-left: 15%">
@@ -38,29 +38,13 @@
         </v-textarea>
         <v-row class="d-flex justify-center">
           <v-btn
-            @click="viewProjectDetail"
-            class="ma-2"
-            outlined
-            color="darkolivegreen"
-          >
-            <v-icon dark left>mdi-cancel</v-icon>Cancel
-          </v-btn>
-
-          <v-btn
-            :loading="loading3"
             :disabled="!valid"
-            @click="saveChanges"
+            @click="createToDo"
             class="ma-2"
             outlined
             color="darkolivegreen"
           >
             <v-icon dark left>mdi-cloud-upload</v-icon>Create
-          </v-btn>
-        </v-row>
-        <v-row justify="center">
-          <!-- <p>Hit the back button once done to view all items</p> -->
-          <v-btn @click="goHome" class="ma-2" outlined color="darkolivegreen">
-            <v-icon dark left>mdi-home</v-icon>View All items
           </v-btn>
         </v-row>
       </v-form>
@@ -76,7 +60,7 @@ export default {
       projectTitle: '',
       projectDetail: '',
       projectDate: '',
-      valid: true,
+      valid: false,
       titleRules: [
         v => !!v || 'A title is required',
         v =>
@@ -108,8 +92,33 @@ export default {
         projectAuthor: localStorage.getItem('email'),
         markDone: false
       }
-      console.log(newProject)
-      this.$refs.form.reset()
+      // console.log(newProject)
+      this.$store.dispatch('createProject', newProject).then(response => {
+        if (response.status === 200) {
+          this.text = 'Project suggestion successful'
+          this.snackbarStatus = 'success'
+          this.$toast.open({
+            message: 'ToDo item creaated',
+            type: 'success',
+            duration: 3000,
+            position: 'top-left',
+            dismissible: true
+          })
+          this.$refs.form.reset()
+          this.goHome()
+        } else {
+          this.$toast.open({
+            message: 'ToDo item was not created',
+            type: 'error',
+            duration: 2000,
+            position: 'top-left',
+            dismissible: true
+          })
+        }
+      })
+    },
+    goHome() {
+      this.$router.push({ name: 'todoItems' })
     }
   }
 }
