@@ -1,19 +1,27 @@
 <template>
-<v-container>
- <v-tabs color="darkolivegreen" class="mb-2" centered >
-   <v-tab ripple @click="showAllItems">All items</v-tab>
-   <v-tab @click="inProgress">Completed</v-tab>
-   <v-tab @click="incomplete">Incomplete</v-tab>
- </v-tabs>
+  <v-container>
+    <v-tabs color="darkolivegreen" class="mb-2" centered>
+      <v-tab ripple @click="showAllItems">All items</v-tab>
+      <v-tab @click="inProgress">Completed</v-tab>
+      <v-tab @click="incomplete">Incomplete</v-tab>
+    </v-tabs>
 
-  <TodoList v-if="allOfThem" :todoItems="allOfThem"/>
+    <TodoList v-if="allOfThem" :todoItems="allOfThem" />
 
-  <v-row justify="end">
-    <v-btn small class="justify-center" fab dark color="darkolivegreen"  @click="dialog = true" title="Add ToDo item">
-      <v-icon dark>mdi-plus</v-icon>
-    </v-btn>
-  </v-row>
-</v-container>
+    <v-row justify="end">
+      <v-btn
+        small
+        class="justify-center"
+        fab
+        dark
+        color="darkolivegreen"
+        @click="newToDoItem"
+        title="Add ToDo item"
+      >
+        <v-icon dark>mdi-plus</v-icon>
+      </v-btn>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -25,24 +33,17 @@ export default {
     TodoList
   },
   computed: {
-    ...mapGetters([
-      'allOfThem'
-    ])
+    ...mapGetters(['allOfThem'])
   },
   methods: {
-    showAllItems () {
-
-    },
-    inProgress () {
-
-    },
-    incomplete () {
-
+    showAllItems() {},
+    inProgress() {},
+    incomplete() {},
+    newToDoItem() {
+      this.$router.push({ name: 'newToDoItem' })
     }
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

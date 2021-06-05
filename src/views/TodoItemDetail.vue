@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div>
+    <div class="d-flex justify-space-between">
       <v-btn
         @click="showHome"
         class="ma-2"
@@ -19,6 +19,10 @@
         v-else
       >
         <v-icon dark left>mdi-arrow-left</v-icon>Back
+      </v-btn>
+
+      <v-btn @click="markAsDone" class="ma-2" outlined color="darkolivegreen">
+        <v-icon dark left>mdi-checkbox-marked-circle</v-icon>Mark done
       </v-btn>
     </div>
 
@@ -156,6 +160,7 @@ export default {
     goHome() {
       this.$router.push({ name: 'todoItems' })
     },
+    markAsDone() {},
     saveChanges() {
       this.loader = 'loading3'
       const today = new Date()
