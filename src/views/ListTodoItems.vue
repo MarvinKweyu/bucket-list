@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-tabs color="darkolivegreen" class="mb-2" centered>
-      <v-tab ripple @click="showAllItems">All items</v-tab>
-      <v-tab @click="inProgress">Completed</v-tab>
-      <v-tab @click="incomplete">Incomplete</v-tab>
+      <v-tab ripple @click="completedStatus = null">All items</v-tab>
+      <v-tab @click="completedStatus = true">Completed</v-tab>
+      <v-tab @click="completedStatus = false">Incomplete</v-tab>
     </v-tabs>
 
-    <TodoList v-if="allOfThem" :todoItems="allOfThem" class="all-todo" />
+    <TodoList v-if="allOfThem" :todoItems="tasksToShow" class="all-todo" />
 
     <v-row justify="end">
       <v-btn
@@ -29,11 +29,25 @@ import { mapGetters } from 'vuex'
 import TodoList from '../components/TodoList'
 export default {
   name: 'ListTodoItems',
+  data() {
+    return {
+      completedStatus: null
+    }
+  },
   components: {
     TodoList
   },
   computed: {
-    ...mapGetters(['allOfThem'])
+    ...mapGetters(['allOfThem']),
+    tasksToShow() {
+      if (this.completedStatus != null) {
+        return this.allOfThem.filter(
+          task => task.markDone === this.completedStatus
+        )
+      } else {
+        return this.allOfThem
+      }
+    }
   },
   methods: {
     showAllItems() {},
