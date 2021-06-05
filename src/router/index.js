@@ -6,11 +6,12 @@ import inProgress from '../components/inProgress'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Login',
-    component: () => import('@/views/Login.vue')
-  },
+  // {
+  //   path: '/',
+  //   name: 'Login',
+  //   component: () => import('@/views/Login.vue')
+  // },
+   { path: '/', redirect: { name: 'todoItems' }}, // redirect to all todo items for now
   {
     path: '/account-recovery',
     name: 'Recovery',
