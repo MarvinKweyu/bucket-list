@@ -95,8 +95,6 @@ export default {
       // console.log(newProject)
       this.$store.dispatch('createProject', newProject).then(response => {
         if (response.status === 200) {
-          this.text = 'Project suggestion successful'
-          this.snackbarStatus = 'success'
           this.$toast.open({
             message: 'ToDo item creaated',
             type: 'success',
