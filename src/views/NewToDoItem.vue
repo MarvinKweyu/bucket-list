@@ -14,7 +14,7 @@
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           color="darkolivegreen"
-          label="project title"
+          label="bucket title"
           prepend-icon="mdi-domain"
           full-width
           v-model="projectTitle"

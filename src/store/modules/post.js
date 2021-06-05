@@ -56,7 +56,8 @@ const actions = {
     commit('SET_PROJECT_DETAIL', projectId)
   },
   updateProject ({ commit, state, dispatch }, projectUpdate) {
-    globalAxios.patch('/posts/posts' + projectUpdate.id + '.json', projectUpdate)
+    
+    globalAxios.patch('/posts/posts/' + projectUpdate.projectId + '.json', projectUpdate.project)
       .then(
         res => {
           console.log(res)
