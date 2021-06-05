@@ -26,6 +26,11 @@ const routes = [
         component: () => import('@/views/ListTodoItems.vue')
       },
       {
+        path: '/new',
+        name: 'newToDoItem',
+        component: () => import('@/views/NewToDoItem.vue')
+      },
+      {
         // path: ':projectId', // optional parameter
         path: '/details/:todoItemId',
         name: 'todoItemDetail',
