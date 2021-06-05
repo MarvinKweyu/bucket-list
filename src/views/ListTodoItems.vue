@@ -6,7 +6,7 @@
       <v-tab @click="incomplete">Incomplete</v-tab>
     </v-tabs>
 
-    <TodoList v-if="allOfThem" :todoItems="allOfThem" />
+    <TodoList v-if="allOfThem" :todoItems="allOfThem" class="all-todo" />
 
     <v-row justify="end">
       <v-btn
@@ -46,4 +46,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.all-todo {
+  height: 500px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+</style>

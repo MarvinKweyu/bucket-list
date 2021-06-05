@@ -21,14 +21,16 @@ const mutations = {
 
 const actions = {
   createProject ({ commit }, postInfo) {
-    const token = localStorage.getItem('token')
-    globalAxios.post('/posts/posts.json' + '?auth=' + token, postInfo)
+    // const token = localStorage.getItem('token')
+    // globalAxios.post('/posts/posts.json' + '?auth=' + token, postInfo)
+    return globalAxios.post('/posts/posts.json', postInfo)
       .then(
         res => {
           // console.log(res)
+          return res
         })
       .catch(error => {
-        console.log(error)
+        return error
       })
   },
   getAllProjects ({ commit }) {
