@@ -38,7 +38,7 @@
         </v-textarea>
         <v-row class="d-flex justify-center">
           <v-btn
-            :disabled="!valid"
+            :disabled="!projectTitle"
             @click="createToDo"
             class="ma-2"
             outlined
@@ -57,7 +57,7 @@ export default {
   name: 'NewToDoItem',
   data() {
     return {
-      projectTitle: '',
+      projectTitle: null,
       projectDetail: '',
       projectDate: '',
       valid: false,
@@ -96,7 +96,7 @@ export default {
       this.$store.dispatch('createProject', newProject).then(response => {
         if (response.status === 200) {
           this.$toast.open({
-            message: 'ToDo item creaated',
+            message: 'ToDo item created',
             type: 'success',
             duration: 3000,
             position: 'top-left',

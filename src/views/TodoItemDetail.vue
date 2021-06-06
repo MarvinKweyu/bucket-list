@@ -97,12 +97,6 @@
           <v-icon dark left>mdi-cloud-upload</v-icon>Save changes
         </v-btn>
       </v-row>
-      <v-row justify="center">
-        <!-- <p>Hit the back button once done to view all items</p> -->
-        <v-btn @click="goHome" class="ma-2" outlined color="darkolivegreen">
-          <v-icon dark left>mdi-home</v-icon>View All items
-        </v-btn>
-      </v-row>
     </div>
   </v-container>
 </template>
@@ -199,8 +193,29 @@ export default {
         project.markDone = true
       }
       const projectId = this.$route.params.todoItemId
-      this.$store.dispatch('updateProject', { project, projectId })
-      this.getAllTodoItems()
+      this.$store
+        .dispatch('updateProject', { project, projectId })
+        .then(response => {
+          if (response.status === 200) {
+            this.$toast.open({
+              message: 'ToDo item updated',
+              type: 'success',
+              duration: 3000,
+              position: 'top-left',
+              dismissible: true
+            })
+            this.getAllTodoItems()
+            this.$router.push({ name: 'todoItems' })
+          } else {
+            this.$toast.open({
+              message: 'The ToDo item was not updated',
+              type: 'error',
+              duration: 2000,
+              position: 'top-left',
+              dismissible: true
+            })
+          }
+        })
     }
   }
 }
