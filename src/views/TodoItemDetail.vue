@@ -196,11 +196,11 @@ export default {
       }
 
       if (this.bucketComplete) {
-        console.log('markign complete')
         project.markDone = true
       }
       const projectId = this.$route.params.todoItemId
       this.$store.dispatch('updateProject', { project, projectId })
+      this.getAllTodoItems()
     }
   }
 }
