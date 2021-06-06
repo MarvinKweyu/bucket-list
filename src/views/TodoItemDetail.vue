@@ -124,7 +124,7 @@ export default {
         this.getAllTodoItems()
       }
       return allTodoItems.find(
-        todoItem => todoItem.id === this.$route.params.todoItemId
+        (todoItem) => todoItem.id === this.$route.params.todoItemId
       )
     }
   },
@@ -193,29 +193,8 @@ export default {
         project.markDone = true
       }
       const projectId = this.$route.params.todoItemId
-      this.$store
-        .dispatch('updateProject', { project, projectId })
-        .then(response => {
-          if (response.status === 200) {
-            this.$toast.open({
-              message: 'ToDo item updated',
-              type: 'success',
-              duration: 3000,
-              position: 'top-left',
-              dismissible: true
-            })
-            this.getAllTodoItems()
-            this.$router.push({ name: 'todoItems' })
-          } else {
-            this.$toast.open({
-              message: 'The ToDo item was not updated',
-              type: 'error',
-              duration: 2000,
-              position: 'top-left',
-              dismissible: true
-            })
-          }
-        })
+      this.$store.dispatch('updateProject', { project, projectId })
+      this.getAllTodoItems()
     }
   }
 }
