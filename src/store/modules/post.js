@@ -57,13 +57,13 @@ const actions = {
   },
   updateProject ({ commit, state, dispatch }, projectUpdate) {
     
-    globalAxios.patch('/posts/posts/' + projectUpdate.projectId + '.json', projectUpdate.project)
+    return globalAxios.patch('/posts/posts/' + projectUpdate.projectId + '.json', projectUpdate.project)
       .then(
         res => {
-          console.log(res)
+          return res
         })
       .catch(error => {
-        console.log(error)
+        return error
       })
   }
 
