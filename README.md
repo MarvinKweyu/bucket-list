@@ -31,17 +31,3 @@ npm run build
 ```bash
 npm run lint
 ```
-
-## Customize configuration
-
-### To build for desktop
-
-```bash
-npm run electron:build
-```
-
-### To launch the desktop application locally
-
-```bash
-snap install --dangerous mart-marv-projects_0.1.0_amd64.snap
-```
