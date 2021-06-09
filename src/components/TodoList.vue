@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-main class=" d-flex justify-center">
-      <v-card width="70vw">
+      <v-card max-width="70vw">
         <v-list two-line>
           <v-list-item-group multiple>
             <template v-for="(item, index) in todoItems">

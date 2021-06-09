@@ -65,5 +65,7 @@ export default {
   height: 500px;
   overflow-y: scroll;
   scrollbar-width: thin;
+  display: grid;
+  place-items: center;
 }
 </style>
