@@ -1,8 +1,9 @@
 <template>
   <v-container class="container">
-    <v-main>
+    <v-main class="main-content">
       <router-view></router-view>
     </v-main>
+    <Footer />
 
     <!-- <v-container>
      <v-row justify="center">
@@ -48,13 +49,13 @@
 
 <script>
 // import { mapActions } from 'vuex'
-
+import Footer from '@/components/Footer'
 export default {
   name: 'Home',
   components: {
-    // 'app-new-post': newPost
+    Footer
   },
-  data () {
+  data() {
     return {
       dialog: false,
       snackbar: false,
@@ -63,21 +64,31 @@ export default {
     }
   },
   methods: {
-    inProgress () {
+    inProgress() {
       this.$router.push({ path: 'in-progress' })
     },
-    goHome () {
+    goHome() {
       this.$router.push({ path: '/home' })
     },
-    closeDialog () {
+    closeDialog() {
       this.dialog = false
     },
-    confirmPostCreation () {
+    confirmPostCreation() {
       this.snackbar = true
     }
   },
-  created () {
+  created() {
     this.$store.dispatch('getAllProjects')
   }
 }
 </script>
+
+<style scoped>
+.main-content {
+  position: relative;
+}
+.bottom {
+  bottom: 0;
+  position: absolute;
+}
+</style>
