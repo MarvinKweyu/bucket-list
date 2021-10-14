@@ -6,6 +6,16 @@
       <v-tab @click="completedStatus = false">Incomplete</v-tab>
     </v-tabs>
 
+    <v-row>
+      <v-col>
+        <v-text-field
+          v-model.lazy="searchTodo"
+          solo
+          placeholder="Search..."
+        ></v-text-field>
+      </v-col>
+    </v-row>
+
     <TodoList v-if="allOfThem" :todoItems="tasksToShow" class="all-todo" />
 
     <v-row justify="end">
@@ -31,7 +41,8 @@ export default {
   name: 'ListTodoItems',
   data() {
     return {
-      completedStatus: null
+      completedStatus: null,
+      searchTodo: ''
     }
   },
   components: {
@@ -40,12 +51,18 @@ export default {
   computed: {
     ...mapGetters(['allOfThem']),
     tasksToShow() {
-      if (this.completedStatus != null) {
-        return this.allOfThem.filter(
-          task => task.markDone === this.completedStatus
-        )
+      const search = String(this.searchTodo).trim()
+      if (this.completedStatus === null) {
+        const items = [...this.allOfThem]
+        return search.length > 0
+          ? items.filter(item => item.projectTitle.includes(search))
+          : items
       } else {
-        return this.allOfThem
+        let items = [...this.allOfThem]
+        items = items.filter(item => item.markDone === this.completedStatus)
+        return search.length > 0
+          ? items.filter(item => item.projectTitle.includes(search))
+          : items
       }
     }
   },
