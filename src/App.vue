@@ -33,6 +33,6 @@ export default {
 
 <style>
 * {
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 </style>

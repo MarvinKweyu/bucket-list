@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <p class="text=center title">Bucket List</p>
+    <p class="text-center subtitle">The Descriptive Bucketlist</p>
     <v-main class="main-content">
       <router-view></router-view>
     </v-main>
