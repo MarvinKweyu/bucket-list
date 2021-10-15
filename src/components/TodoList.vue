@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-main class=" d-flex justify-center">
-      <v-card max-width="70vw">
+    <v-main class="d-flex justify-center">
+      <div class="list-items">
         <v-list two-line>
           <v-list-item-group multiple>
             <template v-for="(item, index) in todoItems">
@@ -10,6 +10,7 @@
                   <template>
                     <v-list-item-content @click="getProjectDetails(item)">
                       <v-list-item-title
+                        class="font-weight-bold"
                         v-text="item.projectTitle"
                       ></v-list-item-title>
                       <v-list-item-subtitle
@@ -35,7 +36,7 @@
             </template>
           </v-list-item-group>
         </v-list>
-      </v-card>
+      </div>
     </v-main>
   </v-container>
 </template>
@@ -62,4 +63,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-items {
+  width: 90vw;
+  overflow-x: hidden;
+}
+</style>

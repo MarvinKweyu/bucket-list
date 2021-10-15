@@ -55,13 +55,13 @@ export default {
       if (this.completedStatus === null) {
         const items = [...this.allOfThem]
         return search.length > 0
-          ? items.filter(item => item.projectTitle.includes(search))
+          ? items.filter((item) => item.projectTitle.includes(search))
           : items
       } else {
         let items = [...this.allOfThem]
-        items = items.filter(item => item.markDone === this.completedStatus)
+        items = items.filter((item) => item.markDone === this.completedStatus)
         return search.length > 0
-          ? items.filter(item => item.projectTitle.includes(search))
+          ? items.filter((item) => item.projectTitle.includes(search))
           : items
       }
     }
@@ -79,8 +79,10 @@ export default {
 
 <style scoped>
 .all-todo {
-  height: 500px;
+  height: 60vh;
+  width: 90vw;
   overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: thin;
   display: grid;
   place-items: center;
