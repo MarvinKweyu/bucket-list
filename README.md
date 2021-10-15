@@ -2,7 +2,7 @@
 
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=bucket-list)
 
-> A bucket list manager
+> A PWA bucket list manager
 
 ## Production app
 
@@ -31,3 +31,13 @@ npm run build
 ```bash
 npm run lint
 ```
+
+## Contributor page
+
+Our contributors
+
+<div align="center">
+    <a href="https://github.com/MarvinKweyu/bucket-list/graphs/contributors">
+        <img alt="contributors' avatars" src="https://contrib.rocks/image?repo=MarvinKweyu/bucket-list" />
+    </a>
+</div>
