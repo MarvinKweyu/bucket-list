@@ -16,11 +16,11 @@ export default {
   components: {
     Header
   },
-  created () {
+  created() {
     this.$store.dispatch('tryAutoLogin')
   },
   computed: {
-    auth () {
+    auth() {
       // returns authentication ; null or a value
       return this.$store.getters.isAuthenticated
     }
@@ -30,3 +30,9 @@ export default {
   })
 }
 </script>
+
+<style>
+* {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+</style>
