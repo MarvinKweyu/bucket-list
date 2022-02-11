@@ -7,14 +7,14 @@
         rel="noopener noreferrer"
         >Marvin Kweyu</a
       >
-    </p>
-
-    <p class="text-center">
-      <a
-        href="https://github.com/MarvinKweyu/bucket-list"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Github repo</a
+      <span>
+        |
+        <a
+          href="https://github.com/MarvinKweyu/bucket-list"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Github repo</a
+        ></span
       >
     </p>
   </v-container>
