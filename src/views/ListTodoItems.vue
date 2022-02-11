@@ -1,13 +1,9 @@
 <template>
   <v-container>
-    <v-tabs color="darkolivegreen" class="mb-2" centered>
-      <v-tab ripple @click="completedStatus = null">All items</v-tab>
-      <v-tab @click="completedStatus = true">Completed</v-tab>
-      <v-tab @click="completedStatus = false">Incomplete</v-tab>
-    </v-tabs>
+
 
     <v-row align="center" justify="center">
-      <v-col cols="4">
+      <v-col class="col-6 col-xs-12">
         <v-text-field
           v-model.lazy="searchTodo"
           solo

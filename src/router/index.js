@@ -11,7 +11,7 @@ const routes = [
   //   name: 'Login',
   //   component: () => import('@/views/Login.vue')
   // },
-   { path: '/', redirect: { name: 'todoItems' }}, // redirect to all todo items for now
+  { path: '/', redirect: { name: 'todoItems' } }, // redirect to all todo items for now
   {
     path: '/account-recovery',
     name: 'Recovery',
@@ -24,6 +24,18 @@ const routes = [
       {
         path: '',
         name: 'todoItems',
+        component: () => import('@/views/ListTodoItems.vue')
+      },
+
+      {
+        path: 'completed',
+        name: 'completed',
+        component: () => import('@/views/ListTodoItems.vue')
+      },
+
+      {
+        path: 'incomplete',
+        name: 'incomplete',
         component: () => import('@/views/ListTodoItems.vue')
       },
       {

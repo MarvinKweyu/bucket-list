@@ -1,13 +1,21 @@
 <template>
-  <v-app-bar app dark>
-    <div class="d-flex align-center">
-      <h2>ToDo</h2>
-    </div>
+  <div class="d-flex justify-space-between">
+    <v-text-field
+      label="Search..."
+      outlined
+      rounded
+      dense
+      class="col-6"
+      color="grey"
+    ></v-text-field>
 
-    <v-spacer></v-spacer>
-    <!--      <v-switch  class="px-5 mt-4" :label="`Dark Theme`" v-model="goDark"></v-switch>-->
-    <v-btn outlined @click="onLogout">Logout</v-btn>
-  </v-app-bar>
+    <div>
+      <span class="mx-3">Marvin Kweyu</span>
+      <v-avatar x-small>
+        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+      </v-avatar>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,15 +29,6 @@ export default {
   methods: {
     onLogout() {
       this.$store.dispatch('logout')
-    }
-  },
-  watch: {
-    changer() {
-      if (this.goDark === true) {
-        return (this.$vuetify.theme.dark = true)
-      } else {
-        return (this.$vuetify.theme.dark = false)
-      }
     }
   }
 }
