@@ -6,8 +6,8 @@
       <v-tab @click="completedStatus = false">Incomplete</v-tab>
     </v-tabs>
 
-    <v-row>
-      <v-col>
+    <v-row align="center" justify="center">
+      <v-col cols="4">
         <v-text-field
           v-model.lazy="searchTodo"
           solo
@@ -18,19 +18,18 @@
 
     <TodoList v-if="allOfThem" :todoItems="tasksToShow" class="all-todo" />
 
-    <v-row justify="end">
+    <router-link :to="{ name: 'newToDoItem' }" class="justify-center">
       <v-btn
         small
         class="justify-center"
         fab
         dark
         color="darkolivegreen"
-        @click="newToDoItem"
         title="Add ToDo item"
       >
         <v-icon dark>mdi-plus</v-icon>
       </v-btn>
-    </v-row>
+    </router-link>
   </v-container>
 </template>
 
@@ -64,14 +63,6 @@ export default {
           ? items.filter((item) => item.projectTitle.includes(search))
           : items
       }
-    }
-  },
-  methods: {
-    showAllItems() {},
-    inProgress() {},
-    incomplete() {},
-    newToDoItem() {
-      this.$router.push({ name: 'newToDoItem' })
     }
   }
 }

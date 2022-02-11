@@ -1,15 +1,22 @@
 ,<template>
   <v-container class="bottom">
-    <v-row class="d-flex justify-center">
-      <p>
-        <a
-          href="https://marvinkweyu.net"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Marvin Kweyu</a
-        >
-      </p>
-    </v-row>
+    <p class="text-center">
+      <a
+        href="https://marvinkweyu.net"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Marvin Kweyu</a
+      >
+    </p>
+
+    <p class="text-center">
+      <a
+        href="https://github.com/MarvinKweyu/bucket-list"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Github repo</a
+      >
+    </p>
   </v-container>
 </template>
 

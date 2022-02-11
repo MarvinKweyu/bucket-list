@@ -2,6 +2,7 @@
   <v-container>
     <p class="text=center title">Bucket List</p>
     <p class="text-center subtitle">The Descriptive Bucketlist</p>
+
     <v-main class="main-content">
       <router-view></router-view>
     </v-main>
@@ -25,20 +26,7 @@ export default {
       timeout: 2000
     }
   },
-  methods: {
-    inProgress() {
-      this.$router.push({ path: 'in-progress' })
-    },
-    goHome() {
-      this.$router.push({ path: '/home' })
-    },
-    closeDialog() {
-      this.dialog = false
-    },
-    confirmPostCreation() {
-      this.snackbar = true
-    }
-  },
+
   created() {
     this.$store.dispatch('getAllProjects')
   }
@@ -52,12 +40,5 @@ export default {
   align-items: center;
 
   font-family: 'Montserrat Alternates', sans-serif !important;
-}
-.main-content {
-  position: relative;
-}
-.bottom {
-  bottom: 0;
-  position: absolute;
 }
 </style>
