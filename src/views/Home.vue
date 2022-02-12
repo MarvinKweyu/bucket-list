@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col class="col-2 nav pl-4">
+    <v-col class="col-2 nav pl-4 d-none d-sm-inline">
       <div class="text-center">
         <v-avatar size="81">
           <img
@@ -38,7 +38,7 @@
         </v-list-item>
       </v-list>
     </v-col>
-    <v-col class="col-10">
+    <v-col class="col-sm-10 col-xs-12">
       <Header />
 
       <router-view></router-view>
