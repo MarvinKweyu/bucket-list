@@ -1,5 +1,7 @@
 <template>
-  <div class="d-flex justify-space-between">
+  <div class="d-flex justify-space-between mx-2">
+    <v-icon class="d-inline d-sm-none">mdi-menu</v-icon>
+
     <v-text-field
       label="Search..."
       outlined
@@ -10,7 +12,7 @@
     ></v-text-field>
 
     <div>
-      <span class="mx-3">Bonface Kamata</span>
+      <span class="mx-3 d-none d-sm-inline">Bonface Kamata</span>
       <v-avatar x-small>
         <img
           src="https://media.istockphoto.com/photos/senior-man-smiling-picture-id93293890?k=20&m=93293890&s=170667a&w=0&h=XV-aZI0Dc3vjbPBXwG8OI2LT-djsTP_YsvmMVCqJU0s="

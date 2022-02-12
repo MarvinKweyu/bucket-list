@@ -1,15 +1,13 @@
-<template>
-  <v-container>
-    <div class="d-flex flex mx-auto">
-      <BoardGroup
-        v-for="group in Object.keys(groupedItems)"
-        :key="group"
-        class="col-3"
-        :title="group"
-        :categoryData="groupedItems[group]"
-      />
-    </div>
-  </v-container>
+<template class="mx-1">
+  <div class="d-flex flex-container">
+    <BoardGroup
+      v-for="group in Object.keys(groupedItems)"
+      :key="group"
+      class="col-sm-3 col-xs-12 my-1 mx-auto"
+      :title="group"
+      :categoryData="groupedItems[group]"
+    />
+  </div>
 </template>
 
 <script>
@@ -49,4 +47,9 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
 </style>
