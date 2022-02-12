@@ -41,12 +41,3 @@ Our contributors
         <img alt="contributors' avatars" src="https://contrib.rocks/image?repo=MarvinKweyu/bucket-list" />
     </a>
 </div>
-```bash
-npm run electron:build
-```
-
-### To launch the desktop application locally
-
-```bash
-snap install --dangerous mart-marv-projects_0.1.0_amd64.snap
-```
