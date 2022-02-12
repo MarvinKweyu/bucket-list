@@ -13,6 +13,11 @@
           >Marvin Kweyu</a
         >.
       </p>
+
+      <p class="red--text">
+        As this undergoes a redesign, you might experience errors related to
+        maintenance
+      </p>
     </article>
   </div>
 </template>

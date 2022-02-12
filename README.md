@@ -6,7 +6,7 @@
 
 ## Production app
 
-Find the application at: https://bucket-list-iota.vercel.app/todos
+Find the application at: https://bucket-list-project.vercel.app/todos/
 
 ## Project setup
 
