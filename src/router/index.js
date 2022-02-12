@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import inProgress from '../components/inProgress'
+
 // import user from '../store/modules/user'
 
 Vue.use(VueRouter)
@@ -12,11 +12,7 @@ const routes = [
   //   component: () => import('@/views/Login.vue')
   // },
   { path: '/', redirect: { name: 'todoItems' } }, // redirect to all todo items for now
-  {
-    path: '/account-recovery',
-    name: 'Recovery',
-    component: () => import('@/views/AccountRecovery.vue')
-  },
+
   {
     path: '/todos',
     component: () => import('@/views/Home.vue'),
@@ -28,31 +24,14 @@ const routes = [
       },
 
       {
-        path: 'completed',
-        name: 'completed',
-        component: () => import('@/views/ListTodoItems.vue')
-      },
-
-      {
-        path: 'incomplete',
-        name: 'incomplete',
-        component: () => import('@/views/ListTodoItems.vue')
+        path: 'tags',
+        name: 'tags',
+        component: () => import('@/views/Tags.vue')
       },
       {
-        path: '/new',
-        name: 'newToDoItem',
-        component: () => import('@/views/NewToDoItem.vue')
-      },
-      {
-        // path: ':projectId', // optional parameter
-        path: '/details/:todoItemId',
-        name: 'todoItemDetail',
-        component: () => import('@/views/TodoItemDetail.vue')
-      },
-      {
-        path: '/in-progress',
-        name: 'inProgress,',
-        component: inProgress
+        path: 'about',
+        name: 'about',
+        component: () => import('@/views/About.vue')
       }
     ]
   },
