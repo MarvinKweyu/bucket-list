@@ -1,12 +1,26 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h2>About</h2>
+    <p>Welcome to TheBucketlist.</p>
 
-    <div class="container">
-  <div class="notification">
-    This container is <strong>centered</strong> on desktop.
-  </div>
-</div>
-
+    <article>
+      <p>
+        This is a project tracker created by
+        <a
+          href="https://marvinkweyu.net"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Marvin Kweyu</a
+        >.
+      </p>
+    </article>
   </div>
 </template>
+
+
+<style scoped>
+.about {
+  padding: 20px;
+  text-align: center;
+}
+</style>

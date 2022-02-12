@@ -1,0 +1,11 @@
+<template>
+  <v-container>
+    <p>There are the following categories</p>
+  </v-container>
+</template>
+
+<script>
+export default {
+  name: 'Tags'
+}
+</script>

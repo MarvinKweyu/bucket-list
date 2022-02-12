@@ -10,9 +10,12 @@
     ></v-text-field>
 
     <div>
-      <span class="mx-3">Marvin Kweyu</span>
+      <span class="mx-3">Bonface Kamata</span>
       <v-avatar x-small>
-        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+        <img
+          src="https://media.istockphoto.com/photos/senior-man-smiling-picture-id93293890?k=20&m=93293890&s=170667a&w=0&h=XV-aZI0Dc3vjbPBXwG8OI2LT-djsTP_YsvmMVCqJU0s="
+          alt="Bonface Kamata"
+        />
       </v-avatar>
     </div>
   </div>

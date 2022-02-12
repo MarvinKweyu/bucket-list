@@ -1,37 +1,21 @@
 <template>
   <v-container>
-
-
-    <v-row align="center" justify="center">
-      <v-col class="col-6 col-xs-12">
-        <v-text-field
-          v-model.lazy="searchTodo"
-          solo
-          placeholder="Search..."
-        ></v-text-field>
-      </v-col>
-    </v-row>
-
-    <TodoList v-if="allOfThem" :todoItems="tasksToShow" class="all-todo" />
-
-    <router-link :to="{ name: 'newToDoItem' }" class="justify-center">
-      <v-btn
-        small
-        class="justify-center"
-        fab
-        dark
-        color="darkolivegreen"
-        title="Add ToDo item"
-      >
-        <v-icon dark>mdi-plus</v-icon>
-      </v-btn>
-    </router-link>
+    <div class="d-flex flex mx-auto">
+      <BoardGroup
+        v-for="group in Object.keys(groupedItems)"
+        :key="group"
+        class="col-3"
+        :title="group"
+        :categoryData="groupedItems[group]"
+      />
+    </div>
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import TodoList from '../components/TodoList'
+import BoardGroup from '@/components/BoardGroup'
+
 export default {
   name: 'ListTodoItems',
   data() {
@@ -41,10 +25,10 @@ export default {
     }
   },
   components: {
-    TodoList
+    BoardGroup
   },
   computed: {
-    ...mapGetters(['allOfThem']),
+    ...mapGetters(['allOfThem', 'groupedItems']),
     tasksToShow() {
       const search = String(this.searchTodo).trim()
       if (this.completedStatus === null) {
@@ -65,13 +49,4 @@ export default {
 </script>
 
 <style scoped>
-.all-todo {
-  height: 60vh;
-  width: 90vw;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-width: thin;
-  display: grid;
-  place-items: center;
-}
 </style>
