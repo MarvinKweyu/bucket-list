@@ -13,6 +13,7 @@
         class="item-detail mt-2"
         v-for="item in categoryData"
         :key="item.id"
+        :item="item"
       />
     </div>
   </v-container>

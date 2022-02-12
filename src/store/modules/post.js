@@ -5,7 +5,8 @@ const state = {
     {
       id: 1,
       title: 'Item 1',
-      description: 'Item 1 description',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus at urna condimentum mattis pellentesque id. Senectus et netus et malesuada fames. Risus in hendrerit gravida rutrum quisque non tellus orci ac. ',
       category: 'completed',
       markDone: true,
       projectTitle: 'Project 1'
@@ -29,7 +30,8 @@ const state = {
     {
       id: 4,
       title: 'Item 4',
-      description: 'Item 4 description',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus at urna condimentum mattis pellentesque id. Senectus et netus et malesuada fames. Risus in hendrerit gravida rutrum quisque non tellus orci ac. ',
       category: 'done',
       markDone: true,
       projectTitle: 'Project 4'
@@ -69,7 +71,8 @@ const state = {
     {
       id: 9,
       title: 'Item 9',
-      description: 'Item 9 description',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus at urna condimentum mattis pellentesque id. Senectus et netus et malesuada fames. Risus in hendrerit gravida rutrum quisque non tellus orci ac.',
       category: 'toDo',
       markDone: true,
       projectTitle: 'Project 9'
