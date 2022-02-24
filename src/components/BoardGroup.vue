@@ -45,12 +45,22 @@
           >
         </div>
       </div>
-      <ItemDetail
-        class="item-detail mt-2"
-        v-for="item in categoryData"
-        :key="item.id"
-        :item="item"
-      />
+      <draggable
+        v-model="groupData"
+        group="people"
+        @start="drag = true"
+        @end="drag = false"
+        @change="log"
+      >
+        <transition-group>
+          <ItemDetail
+            class="item-detail mt-2"
+            v-for="item in groupData"
+            :key="item.id"
+            :item="item"
+          />
+        </transition-group>
+      </draggable>
     </div>
   </v-container>
 </template>
@@ -58,9 +68,11 @@
 
 
 <script>
+import draggable from 'vuedraggable'
 import ItemDetail from './ItemDetail'
 export default {
   name: 'BoardGroup',
+
   props: {
     title: {
       type: String,
@@ -75,6 +87,7 @@ export default {
   data() {
     return {
       newItem: false,
+      groupData: [],
       newItemData: {
         title: '',
         description: '',
@@ -83,8 +96,13 @@ export default {
     }
   },
   components: {
-    ItemDetail
+    ItemDetail,
+    draggable
   },
+  created() {
+    this.groupData = this.categoryData
+  },
+
   methods: {
     onClick() {
       this.$router.push({ name: 'newToDoItem' })
@@ -100,6 +118,9 @@ export default {
         description: '',
         category: 'toDo'
       }
+    },
+    log(evt) {
+      console.log(evt)
     }
   }
 }
