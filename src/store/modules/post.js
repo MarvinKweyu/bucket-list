@@ -89,22 +89,18 @@ const mutations = {
   },
   SET_PROJECTS_OBJECT(state, projectsObjectOfObjects) {
     state.projectsObjectOfObjects = projectsObjectOfObjects
+  },
+  ADD_PROJECT(state, newProject) {
+    const allIds = state.toDoItems.map(item => item.id)
+    const newId = Math.max(...allIds) + 1
+
+    state.toDoItems.push({ ...newProject, id: newId })
   }
 }
 
 const actions = {
   createProject({ commit }, postInfo) {
-    // const token = localStorage.getItem('token')
-    // globalAxios.post('/posts/posts.json' + '?auth=' + token, postInfo)
-    return globalAxios
-      .post('/posts/posts.json', postInfo)
-      .then(res => {
-        // console.log(res)
-        return res
-      })
-      .catch(error => {
-        return error
-      })
+    commit('ADD_PROJECT', postInfo)
   },
   getAllProjects({ commit }) {
     // const token = localStorage.getItem('token')
