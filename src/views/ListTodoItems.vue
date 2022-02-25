@@ -1,8 +1,19 @@
 <template class="mx-1">
   <div class="d-flex flex-container">
     <div class="row">
-      <div class="col-3">
-        <h3>Draggable 1</h3>
+      <div class="col-3 board-group">
+        <div class="d-flex justify-space-between">
+          <h3 class="text-capitalize">ToDo</h3>
+          <p class="item-count">{{ toDoItems.length }}</p>
+        </div>
+        <div class="add-btn d-flex justify-center">
+          <v-icon
+            color="teal"
+            style="background-color: #e8f1f0"
+            @click="newItem = !newItem"
+            >mdi-plus</v-icon
+          >
+        </div>
         <draggable
           class="list-group"
           :list="toDoItems"
@@ -10,7 +21,7 @@
           @change="log"
         >
           <ItemDetail
-            class="list-group-item"
+            class="list-group-item item-detail mt-2"
             v-for="(element, index) in toDoItems"
             :key="index"
             :item="element"
@@ -18,8 +29,11 @@
         </draggable>
       </div>
 
-      <div class="col-3">
-        <h3>In progress</h3>
+      <div class="col-3 board-group">
+        <div class="d-flex justify-space-between">
+          <h3 class="text-capitalize">In Progress</h3>
+          <p class="item-count">{{ inProgress.length }}</p>
+        </div>
         <draggable
           class="list-group"
           :list="inProgress"
@@ -27,7 +41,7 @@
           @change="log"
         >
           <ItemDetail
-            class="list-group-item"
+            class="list-group-item item-detail mt-2"
             v-for="(element, index) in inProgress"
             :key="index"
             :item="element"
@@ -35,8 +49,11 @@
         </draggable>
       </div>
 
-      <div class="col-3">
-        <h3>Done</h3>
+      <div class="col-3 board-group">
+        <div class="d-flex justify-space-between">
+          <h3 class="text-capitalize">Done</h3>
+          <p class="item-count">{{ doneItems.length }}</p>
+        </div>
         <draggable
           class="list-group"
           :list="doneItems"
@@ -44,7 +61,7 @@
           @change="log"
         >
           <ItemDetail
-            class="list-group-item"
+            class="list-group-item item-detail mt-2"
             v-for="(element, index) in doneItems"
             :key="index"
             :item="element"
@@ -66,6 +83,7 @@ export default {
     return {
       completedStatus: null,
       searchTodo: '',
+      newItem: false,
       toDoItems: [],
       doneItems: [],
       inProgress: []
@@ -115,6 +133,22 @@ export default {
       this.toDoItems = this.$store.getters.toDoItems
       this.inProgress = this.$store.getters.inProgress
       this.doneItems = this.$store.getters.doneItems
+    },
+    updateStore() {
+      this.toDoItems.map((item) => {
+        item.category = 'toDo'
+      })
+      this.inProgress.map((item) => {
+        item.category = 'inProgress'
+      })
+      this.doneItems.map((item) => {
+        item.category = 'completed'
+      })
+      this.$store.dispatch('updateToDoItems', [
+        ...this.toDoItems,
+        ...this.inProgress,
+        ...this.doneItems
+      ])
     }
   }
 }
@@ -127,10 +161,46 @@ export default {
   }
 }
 
+.board-group {
+  border-radius: 10px;
+  height: 86vh;
+  background: #f1f5f4;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  .board-group {
+    height: 30vh;
+  }
+}
+
 .item-list {
   height: 74vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
   scrollbar-width: thin;
+}
+
+.add-btn {
+  cursor: pointer;
+  background-color: #e8f1f0;
+  border-radius: 6px;
+  height: 30px;
+}
+
+.item-count {
+  font-size: 12px;
+  color: #8c8c8c;
+  background-color: #e8f1f0;
+  border-radius: 6px;
+  padding: 2%;
+}
+
+.item-detail {
+  padding: 20px;
+  border-radius: 4px;
+  /* background: #f1f5f4; */
+  background-color: white;
+  cursor: -moz-grab;
 }
 </style>
