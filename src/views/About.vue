@@ -5,12 +5,12 @@
 
     <article>
       <p>
-        This is a project tracker created by
+        Track the progress of this project
         <a
-          href="https://marvinkweyu.net"
+          href="https://github.com/MarvinKweyu/bucket-list"
           target="_blank"
           rel="noopener noreferrer"
-          >Marvin Kweyu</a
+          >TheBucketlist</a
         >.
       </p>
 

@@ -6,26 +6,66 @@
           <h3 class="text-capitalize">ToDo</h3>
           <p class="item-count">{{ toDoItems.length }}</p>
         </div>
-        <div class="add-btn d-flex justify-center">
-          <v-icon
-            color="teal"
-            style="background-color: #e8f1f0"
-            @click="newItem = !newItem"
+        <div class="add-btn d-flex justify-center" @click="newItem = !newItem">
+          <v-icon color="teal" style="background-color: #e8f1f0"
             >mdi-plus</v-icon
           >
         </div>
+
+        <div v-if="newItem" class="mt-2">
+          <v-text-field
+            label="Item title"
+            color="#8c8c8c"
+            class="mx-2"
+            v-model="newItemData.title"
+          ></v-text-field>
+          <v-textarea
+            v-model="newItemData.description"
+            name="input-7-1"
+            hint="Add new item"
+            outlined
+            color="#8c8c8c"
+            label="Item description"
+            class="mx-2"
+            auto-grow
+          ></v-textarea>
+          <div class="d-flex justify-space-between mx-4">
+            <v-btn
+              @click="newItem = false"
+              color="secondary"
+              elevation="2"
+              outlined
+              plain
+              >Cancel</v-btn
+            >
+            <v-btn
+              color="secondary"
+              elevation="2"
+              outlined
+              plain
+              @click="addItem"
+              >Add</v-btn
+            >
+          </div>
+        </div>
+
         <draggable
           class="list-group"
           :list="toDoItems"
           group="people"
           @change="log"
         >
-          <ItemDetail
-            class="list-group-item item-detail mt-2"
-            v-for="(element, index) in toDoItems"
-            :key="index"
-            :item="element"
-          />
+          <transition-group
+            type="transition"
+            :name="!drag ? 'flip-list' : null"
+          >
+            <ItemDetail
+              class="list-group-item item-detail mt-2"
+              v-for="(element, index) in toDoItems"
+              :key="index"
+              :item="element"
+            />
+          </transition-group>
         </draggable>
       </div>
 
@@ -40,12 +80,17 @@
           group="people"
           @change="log"
         >
-          <ItemDetail
-            class="list-group-item item-detail mt-2"
-            v-for="(element, index) in inProgress"
-            :key="index"
-            :item="element"
-          />
+          <transition-group
+            type="transition"
+            :name="!inProgressDrag ? 'flip-list' : null"
+          >
+            <ItemDetail
+              class="list-group-item item-detail mt-2"
+              v-for="(element, index) in inProgress"
+              :key="index"
+              :item="element"
+            />
+          </transition-group>
         </draggable>
       </div>
 
@@ -60,12 +105,17 @@
           group="people"
           @change="log"
         >
-          <ItemDetail
-            class="list-group-item item-detail mt-2"
-            v-for="(element, index) in doneItems"
-            :key="index"
-            :item="element"
-          />
+          <transition-group
+            type="transition"
+            :name="!completedDrag ? 'flip-list' : null"
+          >
+            <ItemDetail
+              class="list-group-item item-detail mt-2"
+              v-for="(element, index) in doneItems"
+              :key="index"
+              :item="element"
+            />
+          </transition-group>
         </draggable>
       </div>
     </div>
@@ -84,9 +134,17 @@ export default {
       completedStatus: null,
       searchTodo: '',
       newItem: false,
+      newItemData: {
+        title: '',
+        description: '',
+        category: 'toDo'
+      },
       toDoItems: [],
       doneItems: [],
-      inProgress: []
+      inProgress: [],
+      drag: false,
+      inProgressDrag: false,
+      completedDrag: false
     }
   },
   components: {
@@ -109,6 +167,14 @@ export default {
           ? items.filter((item) => item.projectTitle.includes(search))
           : items
       }
+    },
+    dragOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost'
+      }
     }
   },
   created() {
@@ -127,6 +193,15 @@ export default {
     clone: function (el) {
       return {
         name: el.name + ' cloned'
+      }
+    },
+    addItem() {
+      this.toDoItems.push(this.newItemData)
+      this.newItem = false
+      this.newItemData = {
+        title: '',
+        description: '',
+        category: 'toDo'
       }
     },
     getAllItems() {
@@ -202,5 +277,22 @@ export default {
   /* background: #f1f5f4; */
   background-color: white;
   cursor: -moz-grab;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+.list-group-item {
+  cursor: move;
+}
+.list-group-item i {
+  cursor: pointer;
 }
 </style>
