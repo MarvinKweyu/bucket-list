@@ -7,7 +7,7 @@ const state = {
       title: 'Item 1',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus at urna condimentum mattis pellentesque id. Senectus et netus et malesuada fames. Risus in hendrerit gravida rutrum quisque non tellus orci ac. ',
-      category: 'completed',
+      category: 'inProgress',
       markDone: true,
       projectTitle: 'Project 1'
     },
@@ -48,7 +48,7 @@ const state = {
       id: 6,
       title: 'Item 6',
       description: 'Item 6 description',
-      category: 'completed',
+      category: 'toDo',
       markDone: true,
       projectTitle: 'Project 6'
     },
@@ -64,7 +64,7 @@ const state = {
       id: 8,
       title: 'Item 8',
       description: 'Item 8 description',
-      category: 'completed',
+      category: 'inProgress',
       markDone: true,
       projectTitle: 'Project 8'
     },
@@ -163,6 +163,15 @@ const getters = {
       'In progress': inProgress,
       'Completed items': doneItems
     }
+  },
+  doneItems: state => {
+    return state.toDoItems.filter(item => item.category === 'completed')
+  },
+  toDoItems: state => {
+    return state.toDoItems.filter(item => item.category === 'toDo')
+  },
+  inProgress: state => {
+    return state.toDoItems.filter(item => item.category === 'inProgress')
   }
 }
 
